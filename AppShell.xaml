@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MauiAppDemo.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MauiAppDemo.Pages"
+    Shell.FlyoutBehavior="Disabled">
+
+    <TabBar>
+        <Tab Title="ログイン">
+            <ShellContent
+                Title="ログイン"
+                ContentTemplate="{DataTemplate local:LoginPage}"
+                Shell.BackgroundColor="LightBlue"
+                Route="LoginPage" />
+        </Tab>
+    </TabBar>
+
+    <TabBar>
+        <Tab Title="メイン">
+            <ShellContent
+                Title="メイン"
+                ContentTemplate="{DataTemplate local:MainPage}"
+                Shell.BackgroundColor="LightGreen"
+                Route="MainPage" />
+        </Tab>
+        
+        <Tab Title="サブ">
+            <ShellContent
+                Title="サブ"
+                ContentTemplate="{DataTemplate local:SubPage}"
+                Shell.BackgroundColor="LightPink"
+                Route="SubPage" />
+        </Tab>
+
+        <Tab Title="サブ2">
+            <ShellContent
+                Title="サブ2"
+                ContentTemplate="{DataTemplate local:SubPage}"
+                Shell.BackgroundColor="LightPink"
+                Route="SubPage2" />
+        </Tab>
+
+        <Tab Title="サブ3">
+            <ShellContent
+                Title="サブ3"
+                ContentTemplate="{DataTemplate local:SubPage}"
+                Shell.BackgroundColor="LightPink"
+                Route="SubPage3" />
+        </Tab>
+
+        <Tab Title="サブ4">
+            <ShellContent
+                Title="サブ4"
+                ContentTemplate="{DataTemplate local:SubPage}"
+                Shell.BackgroundColor="LightPink"
+                Route="SubPage4" />
+        </Tab>
+
+        <Tab Title="サブ5">
+            <ShellContent
+                Title="サブ5"
+                ContentTemplate="{DataTemplate local:SubPage}"
+                Shell.BackgroundColor="LightPink"
+                Route="SubPage5" />
+        </Tab>
+    </TabBar>
+</Shell>

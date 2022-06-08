@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiAppDemo.Pages"
+             x:Class="MauiAppDemo.Pages.LoginPage"
+             Loaded="ContentPage_Loaded">
+
+    <ContentPage.BindingContext>
+        <local:LoginPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <local:ValidationPropertyConverter x:Key="ValidationPropertyConverter" />
+    </ContentPage.Resources>
+
+    <ScrollView VerticalOptions="Center" HorizontalOptions="Center" Margin="5,5,5,5">
+        <Grid RowSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Text="社員番号" />
+            <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Path=No, Converter={StaticResource ValidationPropertyConverter}}" Placeholder="NNNN" Keyboard="Numeric" >
+                <Entry.Behaviors>
+                    <local:ValidationPropertyBehavior Property="No" />
+                </Entry.Behaviors>
+            </Entry>
+
+            <Label Grid.Row="1" Grid.Column="0" Text="パスワード" />
+            <Entry Grid.Row="1" Grid.Column="1" Text="{Binding Path=Password, Converter={StaticResource ValidationPropertyConverter}}" Placeholder="●●●●●●●●" IsPassword="True" Keyboard="Plain" >
+                <Entry.Behaviors>
+                    <local:ValidationPropertyBehavior Property="Password" />
+                </Entry.Behaviors>
+            </Entry>
+
+            <local:ValidationPropertyErrors Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" BindingContext="{Binding}" />
+
+            <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                    Text="ログイン" Command="{Binding LoginCommand}" />
+        </Grid>
+    </ScrollView>
+ 
+</ContentPage>
