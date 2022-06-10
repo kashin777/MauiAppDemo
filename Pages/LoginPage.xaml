@@ -27,23 +27,25 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Text="社員番号" />
-            <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Path=No}" Placeholder="NNNN" Keyboard="Numeric" >
+            <Entry Grid.Row="0" Grid.Column="1" 
+                   Text="{Binding Path=No}" Placeholder="NNNN" Keyboard="Numeric" >
                 <Entry.Behaviors>
                     <local:ValidationPropertyBehavior Property="No" />
                 </Entry.Behaviors>
             </Entry>
 
             <Label Grid.Row="1" Grid.Column="0" Text="パスワード" />
-            <Entry Grid.Row="1" Grid.Column="1" Text="{Binding Path=Password}" Placeholder="●●●●●●●●" IsPassword="True" Keyboard="Plain" >
+            <Entry Grid.Row="1" Grid.Column="1" 
+                   Text="{Binding Path=Password}" Placeholder="●●●●●●●●" IsPassword="True" Keyboard="Plain" >
                 <Entry.Behaviors>
                     <local:ValidationPropertyBehavior Property="Password" />
                 </Entry.Behaviors>
             </Entry>
 
+            <!-- エラーメッセージ -->
             <local:ValidationPropertyErrors Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" BindingContext="{Binding}" />
 
-            <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
-                    Text="ログイン"
+            <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="ログイン"
                     Command="{Binding LoginCommand}" />
         </Grid>
     </ScrollView>

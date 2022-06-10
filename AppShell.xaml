@@ -23,39 +23,31 @@
                 Route="MainPage" />
         </Tab>
         
-        <Tab Title="サブ">
+        <Tab Title="サブ1">
             <ShellContent
-                Title="サブ"
+                Title="サブ1"
                 ContentTemplate="{DataTemplate local:SubPage}"
-                Route="SubPage" />
+                Route="SubPage1" />
         </Tab>
 
         <Tab Title="サブ2">
             <ShellContent
-                Title="サブ2"
+                Title="サブ2-1"
                 ContentTemplate="{DataTemplate local:SubPage}"
-                Route="SubPage2" />
+                Route="SubPage2_1" />
+            <ShellContent
+                Title="サブ2-2"
+                ContentTemplate="{DataTemplate local:SubPage}"
+                Route="SubPage2_2" />
+            <ShellContent
+                Title="サブ2-3"
+                ContentTemplate="{DataTemplate local:SubPage}"
+                Route="SubPage2_3" />
+            <ShellContent
+                Title="サブ2-4"
+                ContentTemplate="{DataTemplate local:SubPage}"
+                Route="SubPage2_4" />
         </Tab>
 
-        <Tab Title="サブ3">
-            <ShellContent
-                Title="サブ3"
-                ContentTemplate="{DataTemplate local:SubPage}"
-                Route="SubPage3" />
-        </Tab>
-
-        <Tab Title="サブ4">
-            <ShellContent
-                Title="サブ4"
-                ContentTemplate="{DataTemplate local:SubPage}"
-                Route="SubPage4" />
-        </Tab>
-
-        <Tab Title="サブ5">
-            <ShellContent
-                Title="サブ5"
-                ContentTemplate="{DataTemplate local:SubPage}"
-                Route="SubPage5" />
-        </Tab>
     </TabBar>
 </Shell>
