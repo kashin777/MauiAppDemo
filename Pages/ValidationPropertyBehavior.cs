@@ -19,21 +19,35 @@ namespace MauiAppDemo.Pages
         protected override void OnAttachedTo(Entry bindable)
         {
             bindable.TextChanged += Bindable_TextChanged;
+            //bindable.Unfocused += Bindable_Unfocused;
             base.OnAttachedTo(bindable);
         }
 
         protected override void OnDetachingFrom(Entry bindable)
         {
             bindable.TextChanged -= Bindable_TextChanged;
+            //bindable.Unfocused -= Bindable_Unfocused;
             base.OnDetachingFrom(bindable);
         }
 
         private void Bindable_TextChanged(object sender, TextChangedEventArgs e)
         {
+            PropertyCheck(sender);
+        }
+
+        private void Bindable_Unfocused(object sender, FocusEventArgs e)
+        {
+            PropertyCheck(sender);
+        }
+
+        private void PropertyCheck(object sender)
+        {
             var entry = sender as Entry;
             var value = entry.GetValue(Entry.TextProperty);
 
             var model = entry.BindingContext as PageViewModel;
+            model.ClearModelError();
+
             var parameter = model.GetType().GetProperty(Property);
             var parameterType = parameter.PropertyType;
             var displayAttribute = GetCustomAttribute<DisplayAttribute>(parameter);
@@ -65,7 +79,6 @@ namespace MauiAppDemo.Pages
                 model.ClearError(Property);
                 model.AddError(Property, msg);
             }
-
         }
 
         private T GetCustomAttribute<T>(PropertyInfo property)

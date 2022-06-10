@@ -8,14 +8,16 @@
         <local:PageViewModel />
     </ContentView.BindingContext>
 
-    <StackLayout>
-        <Border Stroke="{StaticResource Error}"
-        StrokeThickness="2"
-        StrokeShape="RoundRectangle 5,5,5,5"
-        Background="#FFeeee"
-        Padding="5, 2, 5, 2"
-        Margin="0"
-        HorizontalOptions="Center" IsVisible="{Binding HasErrors}">
+    <VerticalStackLayout>
+        <Border
+            Stroke="{StaticResource Error}"
+            StrokeThickness="2"
+            StrokeShape="RoundRectangle 5,5,5,5"
+            Background="{StaticResource ErrorBackground}"
+            Padding="5, 2, 5, 2"
+            Margin="5"
+            HorizontalOptions="Fill"
+            IsVisible="{Binding HasErrors}">
             <CollectionView ItemsSource="{Binding Errors}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -24,5 +26,5 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </Border>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentView>

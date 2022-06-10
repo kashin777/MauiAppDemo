@@ -11,6 +11,8 @@ public class PageViewModel : INotifyPropertyChanged
 
     private Dictionary<string, List<string>> _errors = new Dictionary<string, List<string>>();
 
+    public const string MODEL_ERROR = "MODEL_ERROR";
+
     protected void OnPropertyChanged([CallerMemberName] string name = null)
     {
         ValidationContext ctx = new ValidationContext(this) { MemberName = name };
@@ -49,7 +51,6 @@ public class PageViewModel : INotifyPropertyChanged
         return !HasErrors;
     }
 
-
     public bool HasErrors
     {
         get
@@ -75,7 +76,17 @@ public class PageViewModel : INotifyPropertyChanged
         }
     }
 
-    internal void AddError(string name, string errorMessage)
+    public void AddModelError(string errorMessage)
+    {
+        AddError(MODEL_ERROR, errorMessage);
+    }
+
+    internal void ClearModelError()
+    {
+        ClearError(MODEL_ERROR);
+    }
+
+    public void AddError(string name, string errorMessage)
     {
         if (!_errors.ContainsKey(name))
         {

@@ -18,7 +18,6 @@ public partial class LoginPage : ContentPage
     private void ContentPage_Loaded(object sender, EventArgs e)
     {
         var viewModel = (LoginPageViewModel)BindingContext;
-        viewModel.ClearErrors();
     }
 }
 
@@ -63,10 +62,14 @@ public class LoginPageViewModel : PageViewModel
                 if (No.ToString().Equals(Password))
                 {
                     Shell.Current.GoToAsync($"///MainPage?No={No}");
+
+                    No = null;
+                    Password = null;
+                    ClearErrors();
                 }
                 else
                 {
-                    Shell.Current.CurrentPage.DisplayAlert("ログイン失敗", "社員番号とパスワードを確認してください。", "OK");
+                    AddModelError("ログインできませんでした。社員番号とパスワードを確認してください。");
                 }
             }
         },

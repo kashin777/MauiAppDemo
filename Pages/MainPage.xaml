@@ -10,11 +10,11 @@
     </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="ログアウト" Command="{Binding LogoutCommand}" />
+        <ToolbarItem Text="ログアウト" Command="{Binding LogoutCommand}" IconImageSource="logout.png" />
     </ContentPage.ToolbarItems>
 
-    <ScrollView VerticalOptions="Center" HorizontalOptions="Center" Margin="5,5,5,5">
-        <VerticalStackLayout>
+    <ScrollView VerticalOptions="Fill" HorizontalOptions="Fill" Margin="5,5,5,5">
+        <VerticalStackLayout VerticalOptions="Center">
 
             <Label Text="{Binding No}" />
 
