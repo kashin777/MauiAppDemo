@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppDemo.Pages.ValidationPropertyError"
+             xmlns:local="clr-namespace:MauiAppDemo.Pages">
+
+    <ContentView.BindingContext>
+        <local:ValidationPropertyErrorViewModel />
+    </ContentView.BindingContext>
+
+    <VerticalStackLayout>
+        <Border
+            Stroke="{StaticResource Error}"
+            StrokeThickness="2"
+            StrokeShape="RoundRectangle 5,5,5,5"
+            Background="{StaticResource ErrorBackground}"
+            Padding="5, 2, 5, 2"
+            Margin="5"
+            HorizontalOptions="Fill"
+            IsVisible="{Binding HasErrors}">
+            <CollectionView ItemsSource="{Binding Errors}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding}" TextColor="{StaticResource Error}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

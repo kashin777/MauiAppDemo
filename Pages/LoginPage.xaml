@@ -14,12 +14,14 @@
     </ContentPage.Resources>
 
     <ScrollView VerticalOptions="Fill" HorizontalOptions="Fill" Margin="5,5,5,5">
-        <Grid RowSpacing="5" VerticalOptions="Center" HorizontalOptions="Fill">
+        <Grid RowSpacing="5" HorizontalOptions="Fill">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="4*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
@@ -33,20 +35,27 @@
                     <local:ValidationPropertyBehavior Property="No" />
                 </Entry.Behaviors>
             </Entry>
+            <local:ValidationPropertyError Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
+                                           PageViewModel="{Binding Source={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LoginPage}}, Path=BindingContext}"
+                                           Property="No" />
 
-            <Label Grid.Row="1" Grid.Column="0" Text="パスワード" />
-            <Entry Grid.Row="1" Grid.Column="1" 
+            <Label Grid.Row="2" Grid.Column="0" Text="パスワード" />
+            <Entry Grid.Row="2" Grid.Column="1" 
                    Text="{Binding Path=Password}" Placeholder="●●●●●●●●" IsPassword="True" Keyboard="Plain" >
                 <Entry.Behaviors>
                     <local:ValidationPropertyBehavior Property="Password" />
                 </Entry.Behaviors>
             </Entry>
+            <local:ValidationPropertyError Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" 
+                                           PageViewModel="{Binding Source={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LoginPage}}, Path=BindingContext}"
+                                           Property="Password" />
 
-            <!-- エラーメッセージ -->
-            <local:ValidationPropertyErrors Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" BindingContext="{Binding}" />
-
-            <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="ログイン"
+            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="ログイン"
                     Command="{Binding LoginCommand}" />
+            <local:ValidationPropertyError Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" 
+                                           PageViewModel="{Binding Source={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LoginPage}}, Path=BindingContext}"
+                                           Property="{x:Static local:PageViewModel.MODEL_ERROR}}"/>
+
         </Grid>
     </ScrollView>
  

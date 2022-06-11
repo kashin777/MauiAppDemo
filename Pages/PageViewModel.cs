@@ -11,7 +11,7 @@ public class PageViewModel : INotifyPropertyChanged
 
     private Dictionary<string, List<string>> _errors = new Dictionary<string, List<string>>();
 
-    public const string MODEL_ERROR = "MODEL_ERROR";
+    public const string MODEL_ERROR = "_MODEL_";
 
     protected void OnPropertyChanged([CallerMemberName] string name = null)
     {
@@ -75,6 +75,12 @@ public class PageViewModel : INotifyPropertyChanged
             return errors;
         }
     }
+
+    public List<string> PropertyErrors(string property)
+    {
+        return _errors.ContainsKey(property) ? _errors[property] : new List<string>();
+    }
+
 
     public void AddModelError(string errorMessage)
     {

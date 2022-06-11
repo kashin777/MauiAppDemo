@@ -17,7 +17,7 @@ public partial class LoginPage : ContentPage
 
     private void ContentPage_Loaded(object sender, EventArgs e)
     {
-        var viewModel = (LoginPageViewModel)BindingContext;
+
     }
 }
 

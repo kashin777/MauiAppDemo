@@ -13,7 +13,7 @@ public partial class MainPage : ContentPage
 
     private void ContentPage_Loaded(object sender, EventArgs e)
     {
-        var viewModel = BindingContext as MainPageViewModel;
+
     }
 }
 
