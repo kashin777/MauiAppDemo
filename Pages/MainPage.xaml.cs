@@ -18,7 +18,7 @@ public partial class MainPage : ContentPage
 }
 
 [QueryProperty(nameof(No), "No")]
-public class MainPageViewModel : PageViewModel
+public class MainPageViewModel : ValidationPropertyModel
 {
     private int _No;
  

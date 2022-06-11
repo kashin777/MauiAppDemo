@@ -21,7 +21,7 @@ public partial class LoginPage : ContentPage
     }
 }
 
-public class LoginPageViewModel : PageViewModel
+public class LoginPageViewModel : ValidationPropertyModel
 {
     private int? _No;
     private string _Password;

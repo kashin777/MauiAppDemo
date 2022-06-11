@@ -32,29 +32,29 @@
             <Entry Grid.Row="0" Grid.Column="1" 
                    Text="{Binding Path=No}" Placeholder="NNNN" Keyboard="Numeric" >
                 <Entry.Behaviors>
-                    <local:ValidationPropertyBehavior Property="No" />
+                    <local:ValidationPropertyBehavior PropertyName="No" />
                 </Entry.Behaviors>
             </Entry>
-            <local:ValidationPropertyError Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
+            <local:ValidationPropertyError Grid.Row="1" Grid.Column="1" 
                                            PageViewModel="{Binding Source={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LoginPage}}, Path=BindingContext}"
-                                           Property="No" />
+                                           PropertyName="No" />
 
             <Label Grid.Row="2" Grid.Column="0" Text="パスワード" />
             <Entry Grid.Row="2" Grid.Column="1" 
                    Text="{Binding Path=Password}" Placeholder="●●●●●●●●" IsPassword="True" Keyboard="Plain" >
                 <Entry.Behaviors>
-                    <local:ValidationPropertyBehavior Property="Password" />
+                    <local:ValidationPropertyBehavior PropertyName="Password" />
                 </Entry.Behaviors>
             </Entry>
-            <local:ValidationPropertyError Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" 
+            <local:ValidationPropertyError Grid.Row="3" Grid.Column="1"
                                            PageViewModel="{Binding Source={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LoginPage}}, Path=BindingContext}"
-                                           Property="Password" />
+                                           PropertyName="Password" />
 
             <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="ログイン"
                     Command="{Binding LoginCommand}" />
             <local:ValidationPropertyError Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" 
                                            PageViewModel="{Binding Source={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LoginPage}}, Path=BindingContext}"
-                                           Property="{x:Static local:PageViewModel.MODEL_ERROR}}"/>
+                                           PropertyName="{x:Static local:ValidationPropertyModel.MODEL_ERROR}"/>
 
         </Grid>
     </ScrollView>

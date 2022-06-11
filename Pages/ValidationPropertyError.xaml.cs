@@ -5,14 +5,14 @@ namespace MauiAppDemo.Pages;
 
 public partial class ValidationPropertyError : ContentView
 {
-    public static readonly BindableProperty PageViewModelProperty = BindableProperty.Create("PageViewModel", typeof(PageViewModel), typeof(ValidationPropertyError), propertyChanged: PageViewModel_PropertyChanged);
+    public static readonly BindableProperty PageViewModelProperty = BindableProperty.Create("ValidationPropertyModel", typeof(ValidationPropertyModel), typeof(ValidationPropertyError), propertyChanged: PageViewModel_PropertyChanged);
 
-    public PageViewModel PageViewModel { 
+    public ValidationPropertyModel PageViewModel { 
         set => SetValue(PageViewModelProperty, value);
-        get => GetValue(PageViewModelProperty) as PageViewModel;
+        get => GetValue(PageViewModelProperty) as ValidationPropertyModel;
     }
 
-    public string Property { 
+    public string PropertyName { 
         get; 
         set; 
     }
@@ -43,15 +43,15 @@ public partial class ValidationPropertyError : ContentView
         {
             var errorViewModel = BindingContext as ValidationPropertyErrorViewModel;
             errorViewModel.ClearErrors();
-            foreach (var error in PageViewModel.PropertyErrors(Property))
+            foreach (var error in PageViewModel.PropertyErrors(PropertyName))
             {
-                errorViewModel.AddError(Property, error);
+                errorViewModel.AddError(PropertyName, error);
             }
         }
     }
 }
 
-public class ValidationPropertyErrorViewModel : PageViewModel
+public class ValidationPropertyErrorViewModel : ValidationPropertyModel
 {
 
 }
