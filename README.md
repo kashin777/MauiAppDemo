@@ -2,6 +2,11 @@
 .NET Multi-Platform App UI (.NET MAUI) の勉強のために作成したデモアプリです。
 
 # Qiita
+
+## 開発環境 & Hallo, World!
+https://qiita.com/kashin777/items/eae43a555dc28867926f
+
+## MauiAppDemo
 https://qiita.com/kashin777/items/bb249717d65b492ab126
 
 # .NET MAUI Reference
