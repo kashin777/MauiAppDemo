@@ -1,19 +1,21 @@
-﻿namespace MauiAppDemo;
+﻿using System.Globalization;
+
+namespace MauiAppDemo;
 
 public partial class App : Application
 {
 	public App()
 	{
-		InitializeComponent();
+        InitializeComponent();
 
-		MainPage = new AppShell();
+        MainPage = new AppShell();
 	}
 
     protected override Window CreateWindow(IActivationState activationState)
     {
         Window window = base.CreateWindow(activationState);
 
-        window.Title = "Maui Demo App";
+        window.Title = Pages.Messages.App_Title;
 
         return window;
     }

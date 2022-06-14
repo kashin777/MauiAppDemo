@@ -13,49 +13,65 @@
     </ContentPage.Resources>
 
     <ScrollView VerticalOptions="Fill" HorizontalOptions="Fill" Margin="5,5,5,5">
-        <Grid RowSpacing="5" HorizontalOptions="Fill">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="4*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
+        <VerticalStackLayout>
 
-            <Label Grid.Row="0" Grid.Column="0" Text="社員番号" />
-            <Entry Grid.Row="0" Grid.Column="1" 
-                   Text="{Binding Path=No}" Placeholder="NNNN" Keyboard="Numeric" >
-                <Entry.Behaviors>
-                    <local:ValidationPropertyBehavior PropertyName="No" />
-                </Entry.Behaviors>
-            </Entry>
-            <local:ValidationPropertyError Grid.Row="1" Grid.Column="1" 
+            <!--
+            <Label Text="Select Language" />
+            <ListView ItemsSource="{Binding Languages}" ItemSelected="ListView_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Text="{Binding}" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            -->
+
+            <Grid RowSpacing="5" HorizontalOptions="Fill">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="4*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Text="{Static local:Messages.Login_No}" />
+                <Entry Grid.Row="0" Grid.Column="1" 
+                   Text="{Binding Path=No}" Placeholder="{Static local:Messages.Login_No_Placeholder}" Keyboard="Numeric" >
+                    <Entry.Behaviors>
+                        <local:ValidationPropertyBehavior PropertyName="No" />
+                    </Entry.Behaviors>
+                </Entry>
+                <local:ValidationPropertyError Grid.Row="1" Grid.Column="1" 
                                            TargetModel="{Binding Source={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LoginPage}}, Path=BindingContext}"
                                            PropertyName="No" />
 
-            <Label Grid.Row="2" Grid.Column="0" Text="パスワード" />
-            <Entry Grid.Row="2" Grid.Column="1" 
-                   Text="{Binding Path=Password}" Placeholder="●●●●●●●●" IsPassword="True" Keyboard="Plain" >
-                <Entry.Behaviors>
-                    <local:ValidationPropertyBehavior PropertyName="Password" />
-                </Entry.Behaviors>
-            </Entry>
-            <local:ValidationPropertyError Grid.Row="3" Grid.Column="1"
+                <Label Grid.Row="2" Grid.Column="0" Text="{Static local:Messages.Login_Password}" />
+                <Entry Grid.Row="2" Grid.Column="1" 
+                   Text="{Binding Path=Password}" Placeholder="{Static local:Messages.Login_Password_Placeholder}" IsPassword="True" Keyboard="Plain" >
+                    <Entry.Behaviors>
+                        <local:ValidationPropertyBehavior PropertyName="Password" />
+                    </Entry.Behaviors>
+                </Entry>
+                <local:ValidationPropertyError Grid.Row="3" Grid.Column="1"
                                            TargetModel="{Binding Source={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LoginPage}}, Path=BindingContext}"
                                            PropertyName="Password" />
 
-            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="ログイン"
+                <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="{Static local:Messages.Login_Command_Login}"
                     Command="{Binding LoginCommand}" />
-            <local:ValidationPropertyError Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" 
+                <local:ValidationPropertyError Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" 
                                            TargetModel="{Binding Source={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LoginPage}}, Path=BindingContext}"
                                            PropertyName="{x:Static local:ValidationPropertyModel.MODEL_ERROR}"/>
 
-        </Grid>
+            </Grid>
+        </VerticalStackLayout>
     </ScrollView>
  
 </ContentPage>

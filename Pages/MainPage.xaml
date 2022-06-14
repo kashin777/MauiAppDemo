@@ -9,7 +9,7 @@
     </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="ログアウト" Command="{Binding LogoutCommand}" IconImageSource="logout.png" />
+        <ToolbarItem Text="{Static local:Messages.Main_Command_logout}" Command="{Binding LogoutCommand}" IconImageSource="logout.png" />
     </ContentPage.ToolbarItems>
 
     <ScrollView VerticalOptions="Fill" HorizontalOptions="Fill" Margin="5,5,5,5">

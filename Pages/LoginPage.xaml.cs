@@ -2,6 +2,7 @@
 using System.Collections;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Input;
@@ -17,6 +18,17 @@ public partial class LoginPage : ContentPage
 	{
 		InitializeComponent();
     }
+
+    private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+        var culture = new CultureInfo(e.SelectedItem.ToString());
+        CultureInfo.CurrentCulture = culture;
+        CultureInfo.CurrentUICulture = culture;
+        Thread.CurrentThread.CurrentCulture = culture;
+        Thread.CurrentThread.CurrentUICulture = culture;
+
+        // TODO
+    }
 }
 
 /// <summary>
@@ -30,9 +42,9 @@ public class LoginPageViewModel : ValidationPropertyModel
     /// <summary>
     /// 社員番号
     /// </summary>
-    [Display(Order = 1, Name ="社員番号")]
-    [Required(ErrorMessage = "{0}は必須です。")]
-    [Range(1, 9999, ErrorMessage = "{0}は{1}～{2}の間で入力してください。")]
+    [Display(Order = 1, Name = nameof(Messages.Login_No), ResourceType = typeof(Messages))]
+    [Required(ErrorMessageResourceName = nameof(Messages.Error_Required), ErrorMessageResourceType = typeof(Messages))]
+    [Range(1, 9999, ErrorMessageResourceName = nameof(Messages.Error_Range), ErrorMessageResourceType = typeof(Messages))]
     public int? No {
         set
         {
@@ -45,9 +57,9 @@ public class LoginPageViewModel : ValidationPropertyModel
     /// <summary>
     /// パスワード
     /// </summary>
-    [Display(Order = 2, Name = "パスワード")]
-    [Required(ErrorMessage = "{0}は必須です。")]
-    [MinLength(1, ErrorMessage = "{0}は必須です。")]
+    [Display(Order = 2, Name = nameof(Messages.Login_Password), ResourceType = typeof(Messages))]
+    [Required(ErrorMessageResourceName = nameof(Messages.Error_Required), ErrorMessageResourceType = typeof(Messages))]
+    [MinLength(1, ErrorMessageResourceName = nameof(Messages.Error_Required), ErrorMessageResourceType = typeof(Messages))]
     public string Password
     {
         set
@@ -56,6 +68,14 @@ public class LoginPageViewModel : ValidationPropertyModel
             OnPropertyChanged();
         }
         get => _Password;
+    }
+
+    public List<string> Languages
+    {
+        get
+        {
+            return new string[] { "ja", "en" }.ToList();
+        }
     }
 
     /// <summary>
@@ -86,7 +106,7 @@ public class LoginPageViewModel : ValidationPropertyModel
                 // 一致しない場合
                 else
                 {
-                    AddModelError("ログインできませんでした。社員番号とパスワードを確認してください。");
+                    AddModelError(Messages.Error_Comman_Login);
                 }
             }
         },

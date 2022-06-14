@@ -71,6 +71,11 @@
 	  <Compile Update="Pages\LoginPage.xaml.cs">
 	    <DependentUpon>LoginPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Pages\Messages.en.Designer.cs">
+	    <DependentUpon>Messages.en.resx</DependentUpon>
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	  </Compile>
 	  <Compile Update="Pages\SubPage.xaml.cs">
 	    <DependentUpon>SubPage.xaml</DependentUpon>
 	  </Compile>
@@ -80,6 +85,22 @@
 	  <Compile Update="Pages\ValidationPropertyError.xaml.cs">
 	    <DependentUpon>ValidationPropertyError.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Pages\Messages.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Messages.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Pages\Messages.en.resx">
+	    <LastGenOutput>Messages.en.Designer.cs</LastGenOutput>
+	    <Generator>PublicResXFileCodeGenerator</Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Pages\Messages.resx">
+	    <Generator>PublicResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>

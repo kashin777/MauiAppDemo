@@ -28,9 +28,9 @@ public class MainPageViewModel : ValidationPropertyModel
     /// <summary>
     /// 社員番号
     /// </summary>
-    [Display(Order = 1, Name = "社員番号")]
-    [Required(ErrorMessage = "{0}は必須です。")]
-    [Range(1, 9999, ErrorMessage = "{0}は{1}～{2}の間で入力してください。")]
+    [Display(Order = 1, Name = nameof(Messages.Login_No), ResourceType = typeof(Messages))]
+    [Required(ErrorMessageResourceName = nameof(Messages.Error_Required), ErrorMessageResourceType = typeof(Messages))]
+    [Range(1, 9999, ErrorMessageResourceName = nameof(Messages.Error_Range), ErrorMessageResourceType = typeof(Messages))]
     public int No
     {
         set

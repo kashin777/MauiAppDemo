@@ -81,12 +81,12 @@ public class ValidationPropertyBehavior : Behavior<Entry>
         // 必須なのにNULL
         if (requiredAttribute != null && convertedValue == null)
         {
-            msg = requiredAttribute.FormatErrorMessage(displayAttribute.Name);
+            msg = requiredAttribute.FormatErrorMessage(displayAttribute.GetName());
         }
         // 形式エラー
         else if (convertedValue == ValidationPropertyConverter.CONVERT_ERROR)
         {
-            msg = $"{displayAttribute.Name}の形式が不正です。";
+            msg = string.Format(Messages.Error_Converter, displayAttribute.GetName());
         }
 
         // エラーがあれば設定

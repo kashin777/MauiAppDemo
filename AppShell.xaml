@@ -7,44 +7,44 @@
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
-        <Tab Title="ログイン">
+        <Tab Title="{x:Static local:Messages.Page_Login}">
             <ShellContent
-                Title="ログイン"
+                Title="{x:Static local:Messages.Page_Login}"
                 ContentTemplate="{DataTemplate local:LoginPage}"
                 Route="LoginPage" />
         </Tab>
     </TabBar>
 
     <TabBar>
-        <Tab Title="メイン">
+        <Tab Title="{x:Static local:Messages.Page_Main}">
             <ShellContent
-                Title="メイン"
+                Title="{x:Static local:Messages.Page_Main}"
                 ContentTemplate="{DataTemplate local:MainPage}"
                 Route="MainPage" />
         </Tab>
-        
-        <Tab Title="サブ1">
+
+        <Tab Title="{x:Static local:Messages.Page_Sub1}">
             <ShellContent
-                Title="サブ1"
+                Title="{x:Static local:Messages.Page_Sub1}"
                 ContentTemplate="{DataTemplate local:SubPage}"
                 Route="SubPage1" />
         </Tab>
 
-        <Tab Title="サブ2">
+        <Tab Title="{x:Static local:Messages.Page_Sub2}">
             <ShellContent
-                Title="サブ2-1"
+                Title="{x:Static local:Messages.Page_Sub2}"
                 ContentTemplate="{DataTemplate local:SubPage}"
                 Route="SubPage2_1" />
             <ShellContent
-                Title="サブ2-2"
+                Title="{x:Static local:Messages.Page_Sub2}"
                 ContentTemplate="{DataTemplate local:SubPage}"
                 Route="SubPage2_2" />
             <ShellContent
-                Title="サブ2-3"
+                Title="{x:Static local:Messages.Page_Sub2}"
                 ContentTemplate="{DataTemplate local:SubPage}"
                 Route="SubPage2_3" />
             <ShellContent
-                Title="サブ2-4"
+                Title="{x:Static local:Messages.Page_Sub2}"
                 ContentTemplate="{DataTemplate local:SubPage}"
                 Route="SubPage2_4" />
         </Tab>
