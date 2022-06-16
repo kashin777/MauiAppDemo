@@ -18,24 +18,14 @@ public partial class LoginPage : ContentPage
 	{
 		InitializeComponent();
     }
-
-    private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-    {
-        var culture = new CultureInfo(e.SelectedItem.ToString());
-        CultureInfo.CurrentCulture = culture;
-        CultureInfo.CurrentUICulture = culture;
-        Thread.CurrentThread.CurrentCulture = culture;
-        Thread.CurrentThread.CurrentUICulture = culture;
-
-        // TODO
-    }
 }
 
 /// <summary>
 /// ログインページのビューモデル。
 /// </summary>
-public class LoginPageViewModel : ValidationPropertyModel
+public class LoginPageViewModel : ValidationPropertyViewModel
 {
+    private int _Language = (App.Current as App).Language;
     private int? _No;
     private string _Password;
 
@@ -50,6 +40,7 @@ public class LoginPageViewModel : ValidationPropertyModel
         {
             _No = value;
             OnPropertyChanged();
+            ChangeCanExecute(LoginCommand);
         }
         get => _No;	
     }
@@ -66,17 +57,38 @@ public class LoginPageViewModel : ValidationPropertyModel
         {
             _Password = value;
             OnPropertyChanged();
+            ChangeCanExecute(LoginCommand);
         }
         get => _Password;
     }
 
-    public List<string> Languages
+    /// <summary>
+    /// 言語一覧
+    /// </summary>
+    public List<KeyValuePair<string, string>> Languages
     {
         get
         {
-            return new string[] { "ja", "en" }.ToList();
+            return (App.Current as App).Languages;
         }
     }
+
+    /// <summary>
+    /// 言語
+    /// </summary>
+    public int Language {
+        set { 
+            _Language = value;
+            OnPropertyChanged();
+            ChangeCanExecute(LanguageCommand);
+        }
+        get { return _Language; }
+    }
+
+    /// <summary>
+    /// 言語変更コマンド。
+    /// </summary>
+    public ICommand LanguageCommand { protected set; get; }
 
     /// <summary>
     /// ログインコマンド。
@@ -85,6 +97,19 @@ public class LoginPageViewModel : ValidationPropertyModel
 
     public LoginPageViewModel()
     {
+        // 言語変更コマンドの実装
+        LanguageCommand = new Command(() => 
+        {
+            if (Language >= 0)
+            {
+                var app = (App.Current as App);
+                app.Language = Language;
+                app.SwichLanguage();
+            }
+        }, 
+        () => { 
+            return Language != (App.Current as App).Language; 
+        });
 
         // ログインコマンドの実装
         LoginCommand = new Command(() =>
@@ -109,11 +134,16 @@ public class LoginPageViewModel : ValidationPropertyModel
                     AddModelError(Messages.Error_Comman_Login);
                 }
             }
+
+            ChangeCanExecute(LoginCommand);
         },
         () =>
         {
             // 画面にエラーが出ている場合は無効
             return !HasErrors;
         });
+
+        // コマンドを登録
+        AddCommands(LanguageCommand, LoginCommand);
     }
 }

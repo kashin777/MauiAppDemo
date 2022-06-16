@@ -120,6 +120,9 @@
   <data name="App_Title" xml:space="preserve">
     <value>.NET MAUI App Demo</value>
   </data>
+  <data name="Change_Language" xml:space="preserve">
+    <value>Change</value>
+  </data>
   <data name="Error_Comman_Login" xml:space="preserve">
     <value>Login failed. Please check No and Password.</value>
   </data>
@@ -161,5 +164,8 @@
   </data>
   <data name="Page_Sub2" xml:space="preserve">
     <value>Sub 2</value>
+  </data>
+  <data name="Select_Language" xml:space="preserve">
+    <value>Select language.</value>
   </data>
 </root>

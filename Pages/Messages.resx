@@ -120,6 +120,9 @@
   <data name="App_Title" xml:space="preserve">
     <value>.NET MAUI App Demo</value>
   </data>
+  <data name="Change_Language" xml:space="preserve">
+    <value>変更</value>
+  </data>
   <data name="Error_Comman_Login" xml:space="preserve">
     <value>ログインできませんでした。社員番号とパスワードを確認してください。</value>
   </data>
@@ -161,5 +164,8 @@
   </data>
   <data name="Page_Sub2" xml:space="preserve">
     <value>サブ2</value>
+  </data>
+  <data name="Select_Language" xml:space="preserve">
+    <value>言語を選択してください。</value>
   </data>
 </root>

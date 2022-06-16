@@ -70,6 +70,15 @@ namespace MauiAppDemo.Pages {
         }
         
         /// <summary>
+        ///   変更 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Change_Language {
+            get {
+                return ResourceManager.GetString("Change_Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   ログインできませんでした。社員番号とパスワードを確認してください。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Error_Comman_Login {
@@ -192,6 +201,15 @@ namespace MauiAppDemo.Pages {
         public static string Page_Sub2 {
             get {
                 return ResourceManager.GetString("Page_Sub2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   言語を選択してください。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Select_Language {
+            get {
+                return ResourceManager.GetString("Select_Language", resourceCulture);
             }
         }
     }

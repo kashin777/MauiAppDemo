@@ -21,7 +21,7 @@ public partial class MainPage : ContentPage
 /// QueryParameter Noは、社員番号
 /// </summary>
 [QueryProperty(nameof(No), "No")]
-public class MainPageViewModel : ValidationPropertyModel
+public class MainPageViewModel : ValidationPropertyViewModel
 {
     private int _No;
 

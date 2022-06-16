@@ -44,7 +44,7 @@ public class ValidationPropertyModel : INotifyPropertyChanged
         }
 
         // プロパティ変更を通知
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
+        _OnPropertyChanged(PropertyName);
     }
 
     /// <summary>
@@ -149,8 +149,8 @@ public class ValidationPropertyModel : INotifyPropertyChanged
 
         _errors[PropertyName].Add(ErrorMessage);
 
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Errors)));
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(HasErrors)));
+        _OnPropertyChanged(nameof(Errors));
+        _OnPropertyChanged(nameof(HasErrors));
     }
 
     /// <summary>
@@ -160,8 +160,8 @@ public class ValidationPropertyModel : INotifyPropertyChanged
     {
         _errors.Clear();
 
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Errors)));
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(HasErrors)));
+        _OnPropertyChanged(nameof(Errors));
+        _OnPropertyChanged(nameof(HasErrors));
     }
 
     /// <summary>
@@ -175,7 +175,16 @@ public class ValidationPropertyModel : INotifyPropertyChanged
             _errors[PropertyName].Clear();
         }
 
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Errors)));
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(HasErrors)));
+        _OnPropertyChanged(nameof(Errors));
+        _OnPropertyChanged(nameof(HasErrors));
+    }
+
+    /// <summary>
+    /// PorpoertyChangedイベントを発火する。
+    /// </summary>
+    /// <param name="PropertyName">プロパティ名</param>
+    private void _OnPropertyChanged(string PropertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
     }
 }

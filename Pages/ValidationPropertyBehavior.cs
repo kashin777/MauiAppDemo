@@ -95,6 +95,9 @@ public class ValidationPropertyBehavior : Behavior<Entry>
             model.ClearError(PropertyName);
             model.AddError(PropertyName, msg);
         }
+
+        // コマンドの実行可否を更新
+        (model as ValidationPropertyViewModel)?.ChangeCanExecute();
     }
 
     /// <summary>
