@@ -28,9 +28,9 @@
 
                 <Label Grid.Row="0" Grid.Column="0" Text="{Static local:Messages.Select_Language}" />
                 <Picker Grid.Row="0" Grid.Column="1"
-                    ItemsSource="{Binding Languages}" 
-                    ItemDisplayBinding="{Binding Key}"
-                    SelectedIndex="{Binding Language}" />
+                    ItemsSource="{StaticResource DefineLanguages}" 
+                    ItemDisplayBinding="{Binding Value}"
+                    SelectedItem="{Binding Language}" />
 
                 <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
                     Text="{Static local:Messages.Change_Language}" 

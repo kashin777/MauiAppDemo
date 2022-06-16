@@ -1,15 +1,16 @@
-﻿using System.Globalization;
+﻿using MauiAppDemo.Pages;
+using System.Globalization;
 
 namespace MauiAppDemo;
 
 public partial class App : Application
 {
-    private int _Language = 0;
+    private StringKeyValuPair _Language = new StringKeyValuPair() { Key="ja" };
 
     /// <summary>
     /// 現在の言語
     /// </summary>
-    public int Language { 
+    public StringKeyValuPair Language { 
         get 
         {
             return _Language; 
@@ -44,28 +45,12 @@ public partial class App : Application
     /// </summary>
     public void SwichLanguage()
     {
-        var culture = new CultureInfo(Languages[Language].Value);
+        var culture = new CultureInfo(Language.Key);
         CultureInfo.CurrentCulture = culture;
         CultureInfo.CurrentUICulture = culture;
 
         (App.Current as App).Language = Language;
         var shell = new AppShell();
         App.Current.MainPage = shell;
-    }
-
-    /// <summary>
-    /// 言語一覧
-    /// </summary>
-    public List<KeyValuePair<string, string>> Languages
-    {
-        get
-        {
-            var languages = new Dictionary<string, string>();
-
-            languages.Add("日本語", "ja");
-            languages.Add("English", "en");
-
-            return languages.ToList();
-        }
     }
 }

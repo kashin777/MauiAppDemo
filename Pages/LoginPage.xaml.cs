@@ -25,7 +25,7 @@ public partial class LoginPage : ContentPage
 /// </summary>
 public class LoginPageViewModel : ValidationPropertyViewModel
 {
-    private int _Language = (App.Current as App).Language;
+    private StringKeyValuPair _Language = (App.Current as App).Language;
     private int? _No;
     private string _Password;
 
@@ -63,20 +63,9 @@ public class LoginPageViewModel : ValidationPropertyViewModel
     }
 
     /// <summary>
-    /// 言語一覧
-    /// </summary>
-    public List<KeyValuePair<string, string>> Languages
-    {
-        get
-        {
-            return (App.Current as App).Languages;
-        }
-    }
-
-    /// <summary>
     /// 言語
     /// </summary>
-    public int Language {
+    public StringKeyValuPair Language {
         set { 
             _Language = value;
             OnPropertyChanged();
@@ -100,15 +89,12 @@ public class LoginPageViewModel : ValidationPropertyViewModel
         // 言語変更コマンドの実装
         LanguageCommand = new Command(() => 
         {
-            if (Language >= 0)
-            {
-                var app = (App.Current as App);
-                app.Language = Language;
-                app.SwichLanguage();
-            }
+            var app = (App.Current as App);
+            app.Language = Language;
+            app.SwichLanguage();
         }, 
         () => { 
-            return Language != (App.Current as App).Language; 
+            return !Language.Equals((App.Current as App).Language); 
         });
 
         // ログインコマンドの実装
