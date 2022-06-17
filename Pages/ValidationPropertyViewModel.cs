@@ -43,13 +43,13 @@ namespace MauiAppDemo.Pages
         /// <param name="commands">対象のコマンド一覧</param>
         public void ChangeCanExecute(params ICommand[] commands)
         {
-            foreach (var cmd in commands)
+            App.Current.Dispatcher.Dispatch(() =>
             {
-                App.Current.Dispatcher.Dispatch(() =>
+                foreach (var cmd in commands)
                 {
                     (cmd as Command)?.ChangeCanExecute();
-                });
-            }
+                }
+            });
         }
     }
 }

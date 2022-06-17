@@ -41,14 +41,11 @@ public partial class ValidationPropertyError : ContentView
 
     private void TargetModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-        if (e.PropertyName.Equals("Errors"))
+        if (e.PropertyName.Equals("HasErrors"))
         {
             var errorViewModel = BindingContext as ValidationPropertyErrorViewModel;
-            errorViewModel.ClearErrors();
-            foreach (var error in TargetModel.PropertyErrors(PropertyName))
-            {
-                errorViewModel.AddError(PropertyName, error);
-            }
+            errorViewModel.ClearErrors(false);
+            errorViewModel.AddError(PropertyName, TargetModel.PropertyErrors(PropertyName));
         }
     }
 }

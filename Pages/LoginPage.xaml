@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:global="clr-namespace:System.Globalization;assembly=System.Globalization"
              xmlns:local="clr-namespace:MauiAppDemo.Pages"
              x:Class="MauiAppDemo.Pages.LoginPage">
 
@@ -54,7 +53,7 @@
 
                 <Label Grid.Row="0" Grid.Column="0" Text="{Static local:Messages.Login_No}" />
                 <Entry Grid.Row="0" Grid.Column="1" 
-                   Text="{Binding Path=No}" Placeholder="{Static local:Messages.Login_No_Placeholder}" Keyboard="Numeric" >
+                   Text="{Binding Path=No}" Placeholder="{Static local:Messages.Login_No_Placeholder}" Keyboard="Numeric" ReturnType="Next">
                     <Entry.Behaviors>
                         <local:ValidationPropertyBehavior PropertyName="No" />
                     </Entry.Behaviors>
@@ -65,7 +64,7 @@
 
                 <Label Grid.Row="2" Grid.Column="0" Text="{Static local:Messages.Login_Password}" />
                 <Entry Grid.Row="2" Grid.Column="1" 
-                   Text="{Binding Path=Password}" Placeholder="{Static local:Messages.Login_Password_Placeholder}" IsPassword="True" Keyboard="Plain" >
+                   Text="{Binding Path=Password}" Placeholder="{Static local:Messages.Login_Password_Placeholder}" IsPassword="True" Keyboard="Plain" ReturnType="Next">
                     <Entry.Behaviors>
                         <local:ValidationPropertyBehavior PropertyName="Password" />
                     </Entry.Behaviors>

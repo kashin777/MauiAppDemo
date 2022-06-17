@@ -26,13 +26,15 @@ public class ValidationPropertyBehavior : Behavior<Entry>
     {
         bindable.TextChanged += Bindable_TextChanged;
         //bindable.Unfocused += Bindable_Unfocused;
+        //bindable.Completed += Bindable_Completed;
         base.OnAttachedTo(bindable);
     }
 
     protected override void OnDetachingFrom(Entry bindable)
     {
         bindable.TextChanged -= Bindable_TextChanged;
-        //bindable.Unfocused -= Bindable_Unfocused;
+        //bindable.Unfocused += Bindable_Unfocused;
+        //bindable.Completed += Bindable_Completed;
         base.OnDetachingFrom(bindable);
     }
 
@@ -42,6 +44,11 @@ public class ValidationPropertyBehavior : Behavior<Entry>
     }
 
     private void Bindable_Unfocused(object sender, FocusEventArgs e)
+    {
+        PropertyCheck(sender);
+    }
+
+    private void Bindable_Completed(object sender, EventArgs e)
     {
         PropertyCheck(sender);
     }
@@ -92,7 +99,7 @@ public class ValidationPropertyBehavior : Behavior<Entry>
         // エラーがあれば設定
         if (msg != null)
         {
-            model.ClearError(PropertyName);
+            model.ClearError(PropertyName, false);
             model.AddError(PropertyName, msg);
         }
 

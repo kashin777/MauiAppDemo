@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 
@@ -22,7 +23,7 @@ public class ValidationPropertyModel : INotifyPropertyChanged
     /// <summary>
     /// エラーメッセージを、プロパティ毎に保持する。
     /// </summary>
-    private Dictionary<string, List<string>> _errors = new Dictionary<string, List<string>>();
+    private Dictionary<string, ObservableCollection<string>> _errors = new Dictionary<string, ObservableCollection<string>>();
 
     /// <summary>
     /// プロパティが変更されたときに呼び出す。
@@ -37,11 +38,14 @@ public class ValidationPropertyModel : INotifyPropertyChanged
         Validator.TryValidateProperty(GetType().GetProperty(PropertyName).GetValue(this), ctx, results);
 
         // エラーメッセージを蓄積
-        ClearError(PropertyName);
+        ObservableCollection<string> errors = new ObservableCollection<string>();
         foreach (var error in results)
         {
-            AddError(PropertyName, error.ErrorMessage);
+            errors.Add(error.ErrorMessage);
         }
+
+        ClearError(PropertyName, false);
+        AddError(PropertyName, errors);
 
         // プロパティ変更を通知
         _OnPropertyChanged(PropertyName);
@@ -65,13 +69,23 @@ public class ValidationPropertyModel : INotifyPropertyChanged
         Validator.TryValidateObject(this, ctx, results, true);
 
         // エラーメッセージを蓄積
+        Dictionary<string, ObservableCollection<string>> errorsDict = new Dictionary<string, ObservableCollection<string>>();
         foreach (var result in results)
         {
             foreach (var property in result.MemberNames)
             {
-                AddError(property, result.ErrorMessage);
+                if(!errorsDict.ContainsKey(property))
+                {
+                    errorsDict[property] = new ObservableCollection<string>();
+                }
+
+                errorsDict[property].Add(result.ErrorMessage);
             }
         }
+        _errors = errorsDict;
+
+        _OnPropertyChanged(nameof(HasErrors));
+        _OnPropertyChanged(nameof(Errors));
 
         // 検証結果を返す
         return !HasErrors;
@@ -91,12 +105,11 @@ public class ValidationPropertyModel : INotifyPropertyChanged
     /// <summary>
     /// すべてのエラーメッセージ。
     /// </summary>
-    public List<string> Errors
+    public ObservableCollection<string> Errors
     {
         get
         {
-            List<string> errors = new List<string>();
-
+            ObservableCollection<string> errors = new ObservableCollection<string>();
             foreach (var values in _errors.Values)
             {
                 foreach (var value in values)
@@ -113,9 +126,9 @@ public class ValidationPropertyModel : INotifyPropertyChanged
     /// </summary>
     /// <param name="PropertyName">プロパティ名</param>
     /// <returns></returns>
-    public List<string> PropertyErrors(string PropertyName)
+    public ObservableCollection<string> PropertyErrors(string PropertyName)
     {
-        return _errors.ContainsKey(PropertyName) ? _errors[PropertyName] : new List<string>();
+        return _errors.ContainsKey(PropertyName) ? _errors[PropertyName] : new ObservableCollection<string>();
     }
 
     /// <summary>
@@ -144,39 +157,53 @@ public class ValidationPropertyModel : INotifyPropertyChanged
     {
         if (!_errors.ContainsKey(PropertyName))
         {
-            _errors[PropertyName] = new List<string>();
+            _errors[PropertyName] = new ObservableCollection<string>();
         }
 
         _errors[PropertyName].Add(ErrorMessage);
 
-        _OnPropertyChanged(nameof(Errors));
         _OnPropertyChanged(nameof(HasErrors));
+        _OnPropertyChanged(nameof(Errors));
+    }
+
+    public void AddError(string PropertyName, ObservableCollection<string> ErrorMessages)
+    {
+        _errors[PropertyName] = ErrorMessages;
+
+        _OnPropertyChanged(nameof(HasErrors));
+        _OnPropertyChanged(nameof(Errors));
     }
 
     /// <summary>
     /// すべてのエラーをクリアする。
     /// </summary>
-    public void ClearErrors()
+    public void ClearErrors(bool NotifyChanged = true)
     {
         _errors.Clear();
 
-        _OnPropertyChanged(nameof(Errors));
-        _OnPropertyChanged(nameof(HasErrors));
+        if (NotifyChanged)
+        {
+            _OnPropertyChanged(nameof(HasErrors));
+            _OnPropertyChanged(nameof(Errors));
+        }
     }
 
     /// <summary>
     /// 特定のエラーをクリアする。
     /// </summary>
     /// <param name="PropertyName">プロパティ名</param>
-    public void ClearError(string PropertyName)
+    public void ClearError(string PropertyName, bool NotifyChanged = true)
     {
         if (_errors.ContainsKey(PropertyName))
         {
             _errors[PropertyName].Clear();
         }
 
-        _OnPropertyChanged(nameof(Errors));
-        _OnPropertyChanged(nameof(HasErrors));
+        if (NotifyChanged)
+        {
+            _OnPropertyChanged(nameof(HasErrors));
+            _OnPropertyChanged(nameof(Errors));
+        }
     }
 
     /// <summary>
