@@ -1,4 +1,6 @@
-﻿namespace MauiAppDemo;
+﻿using Microsoft.Maui.Platform;
+
+namespace MauiAppDemo;
 
 public static class MauiProgram
 {
@@ -12,6 +14,17 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
+
+		// 
+        Microsoft.Maui.Handlers.EntryHandler.Mapper.ModifyMapping(nameof(IEntry.Background), (handler, entry, action) => 
+		{
+#if WINDOWS
+
+#endif
+#if ANDROID
+            handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Colors.Gray.ToPlatform());
+#endif
+		});
 
         return builder.Build();
 	}
