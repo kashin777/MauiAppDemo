@@ -14,7 +14,7 @@
             StrokeThickness="2"
             StrokeShape="RoundRectangle 6,6,6,6"
             Background="{StaticResource ErrorBackground}"
-            Padding="5, 0, 5, 0"
+            Padding="10, 0, 10, 0"
             Margin="5, 0, 5, 0"
             HorizontalOptions="Fill"
             IsVisible="{Binding HasErrors}">
