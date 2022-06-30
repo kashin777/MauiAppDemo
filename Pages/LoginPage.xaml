@@ -8,10 +8,6 @@
         <local:LoginPageViewModel />
     </ContentPage.BindingContext>
 
-    <ContentPage.Resources>
-        <local:ValidationPropertyConverter x:Key="ValidationPropertyConverter" />
-    </ContentPage.Resources>
-
     <ScrollView VerticalOptions="Fill" HorizontalOptions="Fill" Margin="5,5,5,5">
         <VerticalStackLayout>
 
