@@ -30,8 +30,11 @@ public class ValidationPropertyModel : INotifyPropertyChanged
     /// DataAnnotationsでプロパティの検証を行う。
     /// </summary>
     /// <param name="PropertyName">プロパティ名</param>
-    protected void OnPropertyChanged([CallerMemberName] string PropertyName = null)
+    protected void SetProperty<T>(ref T Property, T Value, [CallerMemberName] string PropertyName = null)
     {
+        // 値を設定
+        Property = Value;
+
         // 呼び出し元のプロパティを検証
         ValidationContext ctx = new ValidationContext(this) { MemberName = PropertyName };
         var results = new List<ValidationResult>();
@@ -48,7 +51,7 @@ public class ValidationPropertyModel : INotifyPropertyChanged
         AddError(PropertyName, errors);
 
         // プロパティ変更を通知
-        _OnPropertyChanged(PropertyName);
+        OnPropertyChanged(PropertyName);
     }
 
     /// <summary>
@@ -84,8 +87,8 @@ public class ValidationPropertyModel : INotifyPropertyChanged
         }
         _errors = errorsDict;
 
-        _OnPropertyChanged(nameof(HasErrors));
-        _OnPropertyChanged(nameof(Errors));
+        OnPropertyChanged(nameof(HasErrors));
+        OnPropertyChanged(nameof(Errors));
 
         // 検証結果を返す
         return !HasErrors;
@@ -162,16 +165,16 @@ public class ValidationPropertyModel : INotifyPropertyChanged
 
         _errors[PropertyName].Add(ErrorMessage);
 
-        _OnPropertyChanged(nameof(HasErrors));
-        _OnPropertyChanged(nameof(Errors));
+        OnPropertyChanged(nameof(HasErrors));
+        OnPropertyChanged(nameof(Errors));
     }
 
     public void AddError(string PropertyName, ObservableCollection<string> ErrorMessages)
     {
         _errors[PropertyName] = ErrorMessages;
 
-        _OnPropertyChanged(nameof(HasErrors));
-        _OnPropertyChanged(nameof(Errors));
+        OnPropertyChanged(nameof(HasErrors));
+        OnPropertyChanged(nameof(Errors));
     }
 
     /// <summary>
@@ -183,8 +186,8 @@ public class ValidationPropertyModel : INotifyPropertyChanged
 
         if (NotifyChanged)
         {
-            _OnPropertyChanged(nameof(HasErrors));
-            _OnPropertyChanged(nameof(Errors));
+            OnPropertyChanged(nameof(HasErrors));
+            OnPropertyChanged(nameof(Errors));
         }
     }
 
@@ -201,8 +204,8 @@ public class ValidationPropertyModel : INotifyPropertyChanged
 
         if (NotifyChanged)
         {
-            _OnPropertyChanged(nameof(HasErrors));
-            _OnPropertyChanged(nameof(Errors));
+            OnPropertyChanged(nameof(HasErrors));
+            OnPropertyChanged(nameof(Errors));
         }
     }
 
@@ -210,7 +213,7 @@ public class ValidationPropertyModel : INotifyPropertyChanged
     /// PorpoertyChangedイベントを発火する。
     /// </summary>
     /// <param name="PropertyName">プロパティ名</param>
-    private void _OnPropertyChanged(string PropertyName)
+    private void OnPropertyChanged(string PropertyName)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
     }

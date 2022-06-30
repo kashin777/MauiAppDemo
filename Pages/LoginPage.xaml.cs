@@ -38,8 +38,7 @@ public class LoginPageViewModel : ValidationPropertyViewModel
     public int? No {
         set
         {
-            _No = value;
-            OnPropertyChanged();
+            SetProperty(ref _No, value);
             ChangeCanExecute(LoginCommand);
         }
         get => _No;	
@@ -55,8 +54,7 @@ public class LoginPageViewModel : ValidationPropertyViewModel
     {
         set
         {
-            _Password = value;
-            OnPropertyChanged();
+            SetProperty(ref _Password, value);
             ChangeCanExecute(LoginCommand);
         }
         get => _Password;
@@ -67,11 +65,10 @@ public class LoginPageViewModel : ValidationPropertyViewModel
     /// </summary>
     public StringKeyValuPair Language {
         set { 
-            _Language = value;
-            OnPropertyChanged();
+            SetProperty(ref _Language, value);
             ChangeCanExecute(LanguageCommand);
         }
-        get { return _Language; }
+        get => _Language;
     }
 
     /// <summary>

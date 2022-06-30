@@ -33,11 +33,7 @@ public class MainPageViewModel : ValidationPropertyViewModel
     [Range(1, 9999, ErrorMessageResourceName = nameof(Messages.Error_Range), ErrorMessageResourceType = typeof(Messages))]
     public int No
     {
-        set
-        {
-            _No = value;
-            OnPropertyChanged();
-        }
+        set => SetProperty(ref _No, value);
         get => _No;
     }
 
