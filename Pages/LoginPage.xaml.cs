@@ -1,11 +1,9 @@
-﻿using MauiAppDemo.Pages;
-using System.Collections;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Globalization;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Windows.Input;
+using MauiAppDemo.Models;
+using MauiAppDemo.Utils;
+using MauiAppDemo.Services;
 
 namespace MauiAppDemo.Pages;
 
@@ -14,9 +12,16 @@ namespace MauiAppDemo.Pages;
 /// </summary>
 public partial class LoginPage : ContentPage
 {
-    public LoginPage()
+    public LoginPage(LoginPageViewModel viewModel)
 	{
-		InitializeComponent();
+        // 言語を変更
+        var culture = new CultureInfo(Preferences.Get("Language", "ja"));
+        CultureInfo.CurrentCulture = culture;
+        CultureInfo.CurrentUICulture = culture;
+
+        InitializeComponent();
+
+        BindingContext = viewModel;
     }
 }
 
@@ -25,7 +30,7 @@ public partial class LoginPage : ContentPage
 /// </summary>
 public class LoginPageViewModel : ValidationPropertyViewModel
 {
-    private StringKeyValuPair _Language = (App.Current as App).Language;
+    private StringKeyValuPair _Language = new StringKeyValuPair() { Key = Preferences.Get("Language", "ja") };
     private int? _No;
     private string _Password;
 
@@ -81,30 +86,38 @@ public class LoginPageViewModel : ValidationPropertyViewModel
     /// </summary>
     public ICommand LoginCommand { protected set; get; }
 
-    public LoginPageViewModel()
+    public LoginPageViewModel(IMauiAppDemoService service)
     {
         // 言語変更コマンドの実装
         LanguageCommand = new Command(() => 
         {
-            var app = (App.Current as App);
-            app.Language = Language;
-            app.SwichLanguage();
+            // 言語を保存
+            Preferences.Set("Language", Language.Key);
+
+            // 画面を初期化
+            App.Current.MainPage = new AppShell();
         }, 
         () => { 
-            return !Language.Equals((App.Current as App).Language); 
+            return !Language.Key.Equals(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName); 
         });
 
         // ログインコマンドの実装
-        LoginCommand = new Command(() =>
+        LoginCommand = new Command(async() =>
         {
             // データ検証
-            if (Validate())
+                if (Validate())
             {
+                var ctx = service.DBContext;
+
                 // 社員番号とパスワードが一致するか？
-                if (No.ToString().Equals(Password))
+                var user = await ctx.FindAsync<User>(No);
+                if (user != null && user.Password.Equals(Hashs.Sha256(user.No.ToString(), Password)))
                 {
-                    // メインページへ移動 (社員番号をQueryParameterとして渡す。)
-                    Shell.Current.GoToAsync($"///MainPage?No={No}");
+                    // メインページへ移動
+                    await Shell.Current.GoToAsync($"///MainPage");
+
+                    // ログインユーザを通知
+                    MessagingCenter.Send<User>(user, "Login");
 
                     // 初期化
                     No = null;

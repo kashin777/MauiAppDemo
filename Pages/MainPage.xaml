@@ -4,10 +4,6 @@
              xmlns:local="clr-namespace:MauiAppDemo.Pages"
              x:Class="MauiAppDemo.Pages.MainPage">
 
-    <ContentPage.BindingContext>
-        <local:MainPageViewModel />
-    </ContentPage.BindingContext>
-
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="{Static local:Messages.Main_Command_logout}" Command="{Binding LogoutCommand}" IconImageSource="logout.png" />
     </ContentPage.ToolbarItems>
@@ -15,7 +11,7 @@
     <ScrollView VerticalOptions="Fill" HorizontalOptions="Fill" Margin="5,5,5,5">
         <VerticalStackLayout VerticalOptions="Center">
 
-            <Label Text="{Binding No}" />
+            <Label Text="{Binding LoginUser.Name}" />
 
         </VerticalStackLayout>
     </ScrollView>

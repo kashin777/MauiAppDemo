@@ -142,7 +142,7 @@
     <value>No</value>
   </data>
   <data name="Login_No_Placeholder" xml:space="preserve">
-    <value>1234</value>
+    <value>NNNN</value>
   </data>
   <data name="Login_Password" xml:space="preserve">
     <value>Password</value>
@@ -167,5 +167,14 @@
   </data>
   <data name="Select_Language" xml:space="preserve">
     <value>Select language.</value>
+  </data>
+  <data name="User_Name" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="User_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="User_Password" xml:space="preserve">
+    <value>Password</value>
   </data>
 </root>

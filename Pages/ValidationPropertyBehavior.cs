@@ -24,17 +24,17 @@ public class ValidationPropertyBehavior : Behavior<Entry>
 
     protected override void OnAttachedTo(Entry bindable)
     {
-        bindable.TextChanged += Bindable_TextChanged;
-        //bindable.Unfocused += Bindable_Unfocused;
+        //bindable.TextChanged += Bindable_TextChanged;
+        bindable.Unfocused += Bindable_Unfocused;
         //bindable.Completed += Bindable_Completed;
         base.OnAttachedTo(bindable);
     }
 
     protected override void OnDetachingFrom(Entry bindable)
     {
-        bindable.TextChanged -= Bindable_TextChanged;
-        //bindable.Unfocused += Bindable_Unfocused;
-        //bindable.Completed += Bindable_Completed;
+        //bindable.TextChanged -= Bindable_TextChanged;
+        bindable.Unfocused -= Bindable_Unfocused;
+        //bindable.Completed -= Bindable_Completed;
         base.OnDetachingFrom(bindable);
     }
 

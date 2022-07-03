@@ -133,7 +133,7 @@ namespace MauiAppDemo.Pages {
         }
         
         /// <summary>
-        ///   1234 に類似しているローカライズされた文字列を検索します。
+        ///   NNNN に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Login_No_Placeholder {
             get {
@@ -210,6 +210,33 @@ namespace MauiAppDemo.Pages {
         public static string Select_Language {
             get {
                 return ResourceManager.GetString("Select_Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ユーザー名 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string User_Name {
+            get {
+                return ResourceManager.GetString("User_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   社員番号 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string User_No {
+            get {
+                return ResourceManager.GetString("User_No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   パスワード に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string User_Password {
+            get {
+                return ResourceManager.GetString("User_Password", resourceCulture);
             }
         }
     }

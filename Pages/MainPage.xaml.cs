@@ -1,6 +1,9 @@
-﻿using MauiAppDemo.Pages;
+﻿using MauiAppDemo.Models;
+using MauiAppDemo.Pages;
+using MauiAppDemo.Services;
 using System.ComponentModel.DataAnnotations;
 using System.Windows.Input;
+using static MauiAppDemo.MauiProgram;
 
 namespace MauiAppDemo.Pages;
 
@@ -9,32 +12,26 @@ namespace MauiAppDemo.Pages;
 /// </summary>
 public partial class MainPage : ContentPage
 {
-	public MainPage()
+	public MainPage(MainPageViewModel viewModel)
 	{
 		InitializeComponent();
+
+        BindingContext = viewModel;
+
 	}
 }
 
 /// <summary>
 /// メインページのビューモデル。
-/// 
-/// QueryParameter Noは、社員番号
 /// </summary>
-[QueryProperty(nameof(No), "No")]
 public class MainPageViewModel : ValidationPropertyViewModel
 {
-    private int _No;
 
-    /// <summary>
-    /// 社員番号
-    /// </summary>
-    [Display(Order = 1, Name = nameof(Messages.Login_No), ResourceType = typeof(Messages))]
-    [Required(ErrorMessageResourceName = nameof(Messages.Error_Required), ErrorMessageResourceType = typeof(Messages))]
-    [Range(1, 9999, ErrorMessageResourceName = nameof(Messages.Error_Range), ErrorMessageResourceType = typeof(Messages))]
-    public int No
-    {
-        set => SetProperty(ref _No, value);
-        get => _No;
+    private User _LoginUser;
+
+    public User LoginUser { 
+        get => _LoginUser;
+        set => SetProperty(ref _LoginUser, value); 
     }
 
     /// <summary>
@@ -42,13 +39,19 @@ public class MainPageViewModel : ValidationPropertyViewModel
     /// </summary>
     public ICommand LogoutCommand { protected set; get; }
 
-    public MainPageViewModel()
+    public MainPageViewModel(IMauiAppDemoService service)
     {
+        // 購読
+        MessagingCenter.Subscribe<User>(this, "Login", (s) => {
+            LoginUser = s;
+        });
 
         // ログアウトコマンドの実装
-        LogoutCommand = new Command(() =>
+        LogoutCommand = new Command(async() =>
         {
-            Shell.Current.GoToAsync("///LoginPage");
+            LoginUser = null;
+
+            await Shell.Current.GoToAsync("///LoginPage");
         },
         () =>
         {

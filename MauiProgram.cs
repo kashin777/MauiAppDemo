@@ -1,8 +1,10 @@
 ﻿using Microsoft.Maui.Platform;
+using MauiAppDemo.Pages;
+using MauiAppDemo.Services;
 
 namespace MauiAppDemo;
 
-public static class MauiProgram
+public static partial class MauiProgram
 {
 	public static MauiApp CreateMauiApp()
 	{
@@ -15,12 +17,17 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
-		// 
+		// Depedency Injection
+        builder.Services
+			.AddTransient<LoginPage>()
+			.AddTransient<LoginPageViewModel>()
+			.AddTransient<MainPage>()
+			.AddTransient<MainPageViewModel>()
+			.AddSingleton<IMauiAppDemoService, MauiAppDemoService>();
+
+		// プラットフォームに応じたカスタマイズ
         Microsoft.Maui.Handlers.EntryHandler.Mapper.ModifyMapping(nameof(IEntry.Background), (handler, entry, action) => 
 		{
-#if WINDOWS
-
-#endif
 #if ANDROID
             handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Colors.Gray.ToPlatform());
 #endif
