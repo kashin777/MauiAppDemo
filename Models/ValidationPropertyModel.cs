@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 
-namespace MauiAppDemo.Pages;
+namespace MauiAppDemo.Models;
 
 /// <summary>
 /// ページ毎のビューモデル。
@@ -77,7 +77,7 @@ public class ValidationPropertyModel : INotifyPropertyChanged
         {
             foreach (var property in result.MemberNames)
             {
-                if(!errorsDict.ContainsKey(property))
+                if (!errorsDict.ContainsKey(property))
                 {
                     errorsDict[property] = new ObservableCollection<string>();
                 }

@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using MauiAppDemo.Models;
 
 namespace MauiAppDemo.Pages;
 
@@ -50,7 +51,7 @@ public partial class ValidationPropertyError : ContentView
     }
 }
 
-public class ValidationPropertyErrorViewModel : ValidationPropertyModel
+public class ValidationPropertyErrorViewModel : ValidationPropertyViewModel
 {
 
 }

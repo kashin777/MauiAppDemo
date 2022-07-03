@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using MauiAppDemo.Models;
 
 namespace MauiAppDemo.Pages;
 
@@ -39,12 +40,12 @@ public partial class ValidationPropertyErrors : ContentView
         {
             var errorViewModel = BindingContext as ValidationPropertyErrorsViewModel;
             errorViewModel.ClearErrors(false);
-            errorViewModel.AddError(ValidationPropertyModel.MODEL_ERROR, TargetModel.Errors);
+            errorViewModel.AddError(ValidationPropertyViewModel.MODEL_ERROR, TargetModel.Errors);
         }
     }
 }
 
-public class ValidationPropertyErrorsViewModel : ValidationPropertyModel
+public class ValidationPropertyErrorsViewModel : ValidationPropertyViewModel
 {
 
 }
