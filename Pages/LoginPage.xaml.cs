@@ -105,7 +105,7 @@ public class LoginPageViewModel : ValidationPropertyViewModel
         LoginCommand = new Command(async() =>
         {
             // データ検証
-                if (Validate())
+            if (Validate())
             {
                 var ctx = service.DBContext;
 
