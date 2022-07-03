@@ -18,7 +18,6 @@ namespace MauiAppDemo.Models
             connStr = Path.Combine(FileSystem.AppDataDirectory, "MauiAppDemo.sq3");
         }
 
-        //デスクトップ上にSQLiteのDBファイルが作成される
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite($"Data Source={connStr}");
     }
