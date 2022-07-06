@@ -113,16 +113,17 @@ public class LoginPageViewModel : ValidationPropertyViewModel
                 var user = await ctx.FindAsync<User>(No);
                 if (user != null && user.Password.Equals(Hashs.Sha256(user.No.ToString(), Password)))
                 {
-                    // メインページへ移動
-                    await Shell.Current.GoToAsync($"///MainPage");
+                    Shell.Current.CurrentPage.Focus();
+                    No = null;
+                    Password = null;
+                    ClearErrors();
 
                     // ログインユーザを通知
                     MessagingCenter.Send<User>(user, "Login");
 
-                    // 初期化
-                    No = null;
-                    Password = null;
-                    ClearErrors();
+                    // メインページへ移動
+                    await Shell.Current.GoToAsync($"///MainPage");
+
                 }
                 // 一致しない場合
                 else
