@@ -41,10 +41,7 @@ public class MainPageViewModel : ValidationPropertyViewModel
 
     public MainPageViewModel(IMauiAppDemoService service)
     {
-        // 購読
-        MessagingCenter.Subscribe<User>(this, "Login", (s) => {
-            LoginUser = s;
-        });
+        LoginUser = service.LoginUser;
 
         // ログアウトコマンドの実装
         LogoutCommand = new Command(async() =>

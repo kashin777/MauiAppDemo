@@ -33,4 +33,10 @@ public class MauiAppDemoService : IMauiAppDemoService
 			return ctx;
 		}
 	}
+
+	public User LoginUser
+	{
+		set;
+		get;
+	}
 }

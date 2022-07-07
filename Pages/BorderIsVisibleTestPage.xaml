@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppDemo.Pages.BorderIsVisibleTestPage"
+             Title="BorderIsVisibleTestPage">
+    <VerticalStackLayout>
+
+        <CheckBox x:Name="CheckBox1" IsChecked="False" />
+            
+        <Border IsVisible="{Binding Source={Reference CheckBox1}, Path=IsChecked}"
+                Stroke="Black" StrokeThickness="1" StrokeShape="Rectangle" Padding="5">
+            <Label Text="CheckBox1 is checked."  />
+        </Border>
+
+    </VerticalStackLayout>
+</ContentPage>

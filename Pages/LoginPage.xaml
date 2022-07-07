@@ -48,7 +48,7 @@
                 <Entry Grid.Row="0" Grid.Column="1" 
                        Text="{Binding Path=No, UpdateSourceEventName=Unfocused}" 
                        Placeholder="{Static local:Messages.Login_No_Placeholder}" 
-                       Keyboard="Numeric" ReturnType="Next">
+                       Keyboard="Numeric" ReturnType="Default">
                     <Entry.Behaviors>
                         <local:ValidationPropertyBehavior PropertyName="No" />
                     </Entry.Behaviors>
@@ -63,7 +63,7 @@
                        Text="{Binding Path=Password, UpdateSourceEventName=Unfocused}" 
                        Placeholder="{Static local:Messages.Login_Password_Placeholder}" 
                        IsPassword="True" 
-                       Keyboard="Plain" ReturnType="Next">
+                       Keyboard="Plain" ReturnType="Default">
                     <Entry.Behaviors>
                         <local:ValidationPropertyBehavior PropertyName="Password" />
                     </Entry.Behaviors>

@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<MauiVersion>6.0.500-preview.1.6140</MauiVersion>
 		<!--
 		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
 		-->
@@ -83,6 +84,9 @@
 	  <Compile Update="Pages\SubPage.xaml.cs">
 	    <DependentUpon>SubPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Pages\ControlsPage.xaml.cs">
+	    <DependentUpon>ControlsPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\MainPage.xaml.cs">
 	    <DependentUpon>MainPage.xaml</DependentUpon>
 	  </Compile>
@@ -108,7 +112,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\BorderIsVisibleTestPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\SubPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\ControlsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\MainPage.xaml">

@@ -26,7 +26,7 @@ public class ValidationPropertyBehavior : Behavior<Entry>
     {
         //bindable.TextChanged += Bindable_TextChanged;
         bindable.Unfocused += Bindable_Unfocused;
-        //bindable.Completed += Bindable_Completed;
+        bindable.Completed += Bindable_Completed;
         base.OnAttachedTo(bindable);
     }
 
@@ -34,7 +34,7 @@ public class ValidationPropertyBehavior : Behavior<Entry>
     {
         //bindable.TextChanged -= Bindable_TextChanged;
         bindable.Unfocused -= Bindable_Unfocused;
-        //bindable.Completed -= Bindable_Completed;
+        bindable.Completed -= Bindable_Completed;
         base.OnDetachingFrom(bindable);
     }
 
@@ -43,12 +43,12 @@ public class ValidationPropertyBehavior : Behavior<Entry>
         PropertyCheck(sender);
     }
 
-    private void Bindable_Unfocused(object sender, FocusEventArgs e)
+    private void Bindable_Completed(object sender, EventArgs e)
     {
-        PropertyCheck(sender);
+        (sender as Entry)?.Unfocus();
     }
 
-    private void Bindable_Completed(object sender, EventArgs e)
+    private void Bindable_Unfocused(object sender, FocusEventArgs e)
     {
         PropertyCheck(sender);
     }

@@ -14,11 +14,6 @@ public partial class LoginPage : ContentPage
 {
     public LoginPage(LoginPageViewModel viewModel)
 	{
-        // 言語を変更
-        var culture = new CultureInfo(Preferences.Get("Language", "ja"));
-        CultureInfo.CurrentCulture = culture;
-        CultureInfo.CurrentUICulture = culture;
-
         InitializeComponent();
 
         BindingContext = viewModel;
@@ -88,6 +83,11 @@ public class LoginPageViewModel : ValidationPropertyViewModel
 
     public LoginPageViewModel(IMauiAppDemoService service)
     {
+#if DEBUG
+        No = 1234;
+        Password = "1234";
+#endif
+
         // 言語変更コマンドの実装
         LanguageCommand = new Command(() => 
         {
@@ -118,8 +118,8 @@ public class LoginPageViewModel : ValidationPropertyViewModel
                     Password = null;
                     ClearErrors();
 
-                    // ログインユーザを通知
-                    MessagingCenter.Send<User>(user, "Login");
+                    // ログインユーザを設定
+                    service.LoginUser = user;
 
                     // メインページへ移動
                     await Shell.Current.GoToAsync($"///MainPage");

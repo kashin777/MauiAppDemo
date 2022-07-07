@@ -153,14 +153,14 @@
   <data name="Main_Command_logout" xml:space="preserve">
     <value>ログアウト</value>
   </data>
+  <data name="Page_Control" xml:space="preserve">
+    <value>コントロール</value>
+  </data>
   <data name="Page_Login" xml:space="preserve">
     <value>ログイン</value>
   </data>
   <data name="Page_Main" xml:space="preserve">
     <value>メイン</value>
-  </data>
-  <data name="Page_Sub1" xml:space="preserve">
-    <value>サブ1</value>
   </data>
   <data name="Page_Sub2" xml:space="preserve">
     <value>サブ2</value>

@@ -2,12 +2,16 @@
 
 public partial class SubPage : ContentPage
 {
-
-    public int No { set; get; }
-
 	public SubPage()
 	{
 		InitializeComponent();
+
+		BindingContext = new SubPageViewModel();
 	}
+}
+
+public class SubPageViewModel : ValidationPropertyViewModel
+{
+
 }
 

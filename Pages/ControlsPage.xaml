@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:localModel="clr-namespace:MauiAppDemo.Models"
+             x:Class="MauiAppDemo.Pages.ControlsPage">
+
+    <ContentPage.Resources>
+
+        <x:Array x:Key="UserArray" Type="{x:Type localModel:User}">
+            <localModel:User No="1234" localModel:Name="Kashin777" />
+            <localModel:User No="1111" localModel:Name="User1111" />
+            <localModel:User No="9999" localModel:Name="User9999" />
+        </x:Array>
+
+        <DataTemplate x:Key="UserViewTemplate">
+            <Border Stroke="Black"
+                    StrokeThickness="1"
+                    StrokeShape="Rectangle"
+                    Padding="5"
+                    WidthRequest="70" HeightRequest="70">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="CurrentItem">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1.0" />
+                                <Setter Property="Opacity" Value="1.0" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="PreviousItem">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.75" />
+                                <Setter Property="Opacity" Value="0.75" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="NextItem">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.75" />
+                                <Setter Property="Opacity" Value="0.75" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="DefaultItem">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="0.5" />
+                                <Setter Property="Opacity" Value="0.5" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <VerticalStackLayout>
+                    <Label Text="{Binding No}" />
+                    <Label Text="{Binding Name}" />
+                </VerticalStackLayout>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="UserViewCellTemplate">
+            <ViewCell>
+                <Border Stroke="Black"
+                    StrokeThickness="1"
+                    StrokeShape="Rectangle"
+                    Padding="5"
+                    WidthRequest="70" HeightRequest="70">
+                    <VerticalStackLayout>
+                        <Label Text="{Binding No}" />
+                        <Label Text="{Binding Name}" />
+                    </VerticalStackLayout>
+                </Border>
+            </ViewCell>
+        </DataTemplate>
+
+    </ContentPage.Resources>
+    
+    <ScrollView>
+        <Grid RowSpacing="5" ColumnSpacing="5" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="1" Grid.Column="0" Text="ActivityIndicator" />
+            <HorizontalStackLayout Grid.Row="1" Grid.Column="1" VerticalOptions="Center">
+                <CheckBox IsChecked="True" x:Name="ActivityIndicatorCheckBox" />
+                <ActivityIndicator WidthRequest="50" HeightRequest="50" IsRunning="{Binding Source={x:Reference ActivityIndicatorCheckBox}, Path=IsChecked}" Color="Red"  />
+                <ActivityIndicator WidthRequest="50" HeightRequest="50" IsRunning="{Binding Source={x:Reference ActivityIndicatorCheckBox}, Path=IsChecked}" Color="Green" />
+                <ActivityIndicator WidthRequest="50" HeightRequest="50" IsRunning="{Binding Source={x:Reference ActivityIndicatorCheckBox}, Path=IsChecked}" Color="Blue" />
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="2" Grid.Column="0" Text="BlazorWebView" />
+            <HorizontalStackLayout Grid.Row="2" Grid.Column="1" VerticalOptions="Center">
+            </HorizontalStackLayout>
+
+
+            <Label Grid.Row="3" Grid.Column="0" Text="Border" />
+            <HorizontalStackLayout Grid.Row="3" Grid.Column="1" VerticalOptions="Center">
+                <Border WidthRequest="50" HeightRequest="50" Margin="5" Stroke="Black"
+                        StrokeThickness="1" StrokeShape="Rectangle" />
+                <Border WidthRequest="50" HeightRequest="50" Margin="5" Stroke="Red"
+                        StrokeThickness="2" StrokeShape="RoundRectangle 10,10,10,10"/>
+                <Border WidthRequest="50" HeightRequest="50" Margin="5" Stroke="Green"
+                        StrokeThickness="3" StrokeShape="Rectangle" StrokeDashArray="5.0" StrokeDashOffset="1.0">
+                </Border>
+                <Border WidthRequest="50" HeightRequest="50" Margin="5" Stroke="Blue"
+                        StrokeThickness="6" StrokeShape="Ellipse" BackgroundColor="SkyBlue" />
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="4" Grid.Column="0" Text="BoxView" />
+            <HorizontalStackLayout Grid.Row="4" Grid.Column="1" VerticalOptions="Center">
+                <BoxView WidthRequest="50" HeightRequest="50" Margin="5" Color="Pink" />
+                <BoxView WidthRequest="50" HeightRequest="50" Margin="5" Color="LightGreen" CornerRadius="10" />
+                <BoxView WidthRequest="50" HeightRequest="50" Margin="5" Color="LightBlue" CornerRadius="20,0,0,0" />
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="5" Grid.Column="0" Text="Button" />
+            <HorizontalStackLayout Grid.Row="5" Grid.Column="1" VerticalOptions="Center">
+                <Button WidthRequest="80" HeightRequest="50" Margin="5" Text="Click" TextColor="White" Background="Red" />
+                <Button WidthRequest="80" HeightRequest="50" Margin="5" Text="Click" TextColor="Black" Background="Green" />
+                <Button WidthRequest="120" HeightRequest="50" Margin="5" Text="Click" TextColor="Black" Background="LightBlue" ImageSource="logout.png" />
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="6" Grid.Column="0" Text="CarouselView" />
+            <HorizontalStackLayout Grid.Row="6" Grid.Column="1" VerticalOptions="Center">
+
+                <Label VerticalTextAlignment="Center" WidthRequest="120">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Current Item = " />
+                            <Span Text="{Binding Source={Reference CarouselView}, Path=CurrentItem.Name}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <CarouselView x:Name="CarouselView" WidthRequest="200" HeightRequest="100" 
+                              ItemsSource="{StaticResource UserArray}" ItemTemplate="{StaticResource UserViewTemplate}"
+                              Position="0" PeekAreaInsets="60" BackgroundColor="#D9D9D9">
+                </CarouselView>
+
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="7" Grid.Column="0" Text="CheckBox" />
+            <HorizontalStackLayout Grid.Row="7" Grid.Column="1" VerticalOptions="Center">
+                <CheckBox Margin="5" Color="Red" />
+                <CheckBox Margin="5" Color="Green" />
+                <CheckBox x:Name="CheckBox3" Margin="5" Color="LightBlue" />
+                <CheckBox x:Name="CheckBox4" Margin="5" IsEnabled="{Binding Source={Reference CheckBox3}, Path=IsChecked}">
+                    <CheckBox.Triggers>
+                        <DataTrigger TargetType="{x:Type CheckBox}" Binding="{Binding Source={x:RelativeSource Mode=Self}, Path=IsChecked}" Value="False">
+                            <Setter Property="Color" Value="Red" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="{x:Type CheckBox}" Binding="{Binding Source={x:RelativeSource Mode=Self}, Path=IsChecked}" Value="True">
+                            <Setter Property="Color" Value="Green" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="{x:Type CheckBox}" Binding="{Binding Source={x:RelativeSource Mode=Self}, Path=IsEnabled}" Value="False">
+                            <Setter Property="Opacity" Value="0.3" />
+                        </DataTrigger>
+                    </CheckBox.Triggers>
+                </CheckBox>
+                <CheckBox Margin="5" IsEnabled="{Binding Source={Reference CheckBox4}, Path=IsChecked}">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Color" Value="Red" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="IsChecked">
+                                <VisualState.Setters>
+                                    <Setter Property="Color" Value="Green" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="Opacity" Value="0.3" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </CheckBox>
+            </HorizontalStackLayout>
+
+
+            <Label Grid.Row="8" Grid.Column="0" Text="CollectionView" />
+            <HorizontalStackLayout Grid.Row="8" Grid.Column="1" VerticalOptions="Center">
+                <CollectionView x:Name="CollectionView" WidthRequest="200" HeightRequest="100" 
+                                ItemsSource="{StaticResource UserArray}" ItemTemplate="{StaticResource UserViewTemplate}">
+                </CollectionView>
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="9" Grid.Column="0" Text="DatePicker" />
+            <HorizontalStackLayout Grid.Row="9" Grid.Column="1" VerticalOptions="Center">
+                <DatePicker Format="yyyy/MM/dd(ddd)" />
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="10" Grid.Column="0" Text="Editor" />
+            <HorizontalStackLayout Grid.Row="10" Grid.Column="1" VerticalOptions="Center">
+                <Editor x:Name="Editor" WidthRequest="100" HeightRequest="100"
+                        Placeholder="Please input multi line text."
+                        MaxLength="100" />
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="length = " />
+                            <Span Text="{Binding Source={Reference Editor}, Path=Text.Length}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="11" Grid.Column="0" Text="Ellipse" />
+            <HorizontalStackLayout Grid.Row="11" Grid.Column="1" VerticalOptions="Center">
+                <Ellipse WidthRequest="50" HeightRequest="50"
+                         Stroke="Red"
+                         Fill="Pink"
+                         StrokeThickness="2" />
+                <Ellipse WidthRequest="25" HeightRequest="50"
+                         Stroke="Green"
+                         Fill="LightGreen"
+                         StrokeThickness="4" />
+                <Ellipse WidthRequest="50" HeightRequest="25"
+                         Stroke="LightBlue"
+                         Fill="Blue"
+                         StrokeThickness="6" Rotation="45">
+                </Ellipse>
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="12" Grid.Column="0" Text="Entry" />
+            <HorizontalStackLayout Grid.Row="12" Grid.Column="1" VerticalOptions="Center">
+                <Entry x:Name="Entry" WidthRequest="100"
+                        Placeholder="Please input single line text."
+                        MaxLength="100" />
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="length = " />
+                            <Span Text="{Binding Source={Reference Entry}, Path=Text.Length}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="13" Grid.Column="0" Text="GraphicsView" />
+            <HorizontalStackLayout Grid.Row="13" Grid.Column="1" VerticalOptions="Center">
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="14" Grid.Column="0" Text="Image" />
+            <HorizontalStackLayout Grid.Row="14" Grid.Column="1" VerticalOptions="Center">
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="15" Grid.Column="0" Text="ImageButton" />
+            <HorizontalStackLayout Grid.Row="15" Grid.Column="1" VerticalOptions="Center">
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="16" Grid.Column="0" Text="IndicatorView" />
+            <HorizontalStackLayout Grid.Row="16" Grid.Column="1" VerticalOptions="Center">
+                <VerticalStackLayout Spacing="10">
+                    <CarouselView WidthRequest="200" HeightRequest="100" 
+                            ItemsSource="{StaticResource UserArray}" ItemTemplate="{StaticResource UserViewCellTemplate}"
+                            Position="0" PeekAreaInsets="60" BackgroundColor="#D9D9D9"
+                            IndicatorView="IndicatorView">
+                    </CarouselView>
+                    <IndicatorView x:Name="IndicatorView" 
+                                   IndicatorColor="LightGray"
+                                   SelectedIndicatorColor="{StaticResource Primary}"
+                                   IndicatorSize="9"
+                                   HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="17" Grid.Column="0" Text="Label" />
+            <HorizontalStackLayout Grid.Row="17" Grid.Column="1" VerticalOptions="Center">
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="18" Grid.Column="0" Text="Line" />
+            <HorizontalStackLayout Grid.Row="18" Grid.Column="1" VerticalOptions="Center">
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="19" Grid.Column="0" Text="ListView" />
+            <HorizontalStackLayout Grid.Row="19" Grid.Column="1" VerticalOptions="Center">
+
+                <Label VerticalTextAlignment="Center" WidthRequest="120">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Selected Item = " />
+                            <Span Text="{Binding Source={Reference ListView}, Path=SelectedItem.Name}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <ListView x:Name="ListView" WidthRequest="200" HeightRequest="100" 
+                            ItemsSource="{StaticResource UserArray}" ItemTemplate="{StaticResource UserViewCellTemplate}">
+                </ListView>
+
+            </HorizontalStackLayout>
+
+        </Grid>
+    </ScrollView>
+ 
+</ContentPage>

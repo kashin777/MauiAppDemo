@@ -169,6 +169,15 @@ namespace MauiAppDemo.Pages {
         }
         
         /// <summary>
+        ///   コントロール に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Page_Control {
+            get {
+                return ResourceManager.GetString("Page_Control", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   ログイン に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Page_Login {
@@ -183,15 +192,6 @@ namespace MauiAppDemo.Pages {
         public static string Page_Main {
             get {
                 return ResourceManager.GetString("Page_Main", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   サブ1 に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        public static string Page_Sub1 {
-            get {
-                return ResourceManager.GetString("Page_Sub1", resourceCulture);
             }
         }
         

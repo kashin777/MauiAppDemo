@@ -15,7 +15,11 @@
         </Tab>
     </TabBar>
 
-    <TabBar>
+    <TabBar 
+        Shell.TabBarBackgroundColor="{StaticResource Primary}"
+        Shell.TabBarTitleColor="White"
+        Shell.TabBarUnselectedColor="LightGray"
+        >
         <Tab Title="{x:Static local:Messages.Page_Main}">
             <ShellContent
                 Title="{x:Static local:Messages.Page_Main}"
@@ -23,17 +27,17 @@
                 Route="MainPage" />
         </Tab>
 
-        <Tab Title="{x:Static local:Messages.Page_Sub1}">
+        <Tab Title="{x:Static local:Messages.Page_Control}">
             <ShellContent
-                Title="{x:Static local:Messages.Page_Sub1}"
-                ContentTemplate="{DataTemplate local:SubPage}"
-                Route="SubPage1" />
+                Title="{x:Static local:Messages.Page_Control}"
+                ContentTemplate="{DataTemplate local:ControlsPage}"
+                Route="ControlsPage" />
         </Tab>
 
         <Tab Title="{x:Static local:Messages.Page_Sub2}">
             <ShellContent
                 Title="{x:Static local:Messages.Page_Sub2}"
-                ContentTemplate="{DataTemplate local:SubPage}"
+                ContentTemplate="{DataTemplate local:BorderIsVisibleTestPage}"
                 Route="SubPage2_1" />
             <ShellContent
                 Title="{x:Static local:Messages.Page_Sub2}"

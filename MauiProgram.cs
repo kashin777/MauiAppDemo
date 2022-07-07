@@ -25,19 +25,32 @@ public static partial class MauiProgram
 			.AddTransient<MainPageViewModel>()
 			.AddSingleton<IMauiAppDemoService, MauiAppDemoService>();
 
-		// プラットフォームに応じたカスタマイズ
-        Microsoft.Maui.Handlers.PickerHandler.Mapper.ModifyMapping(nameof(IPicker.Background), (handler, picker, action) => 
-		{
+        // プラットフォームに応じたカスタマイズ
+        Microsoft.Maui.Handlers.DatePickerHandler.Mapper.ModifyMapping(nameof(IDatePicker.Background), (handler, picker, action) =>
+        {
 #if ANDROID
             handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Colors.Gray.ToPlatform());
 #endif
-		});
+        });
+        Microsoft.Maui.Handlers.EditorHandler.Mapper.ModifyMapping(nameof(IEditor.Background), (handler, editor, action) =>
+        {
+#if ANDROID
+            handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Colors.Gray.ToPlatform());
+#endif
+        });
         Microsoft.Maui.Handlers.EntryHandler.Mapper.ModifyMapping(nameof(IEntry.Background), (handler, entry, action) =>
         {
 #if ANDROID
             handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Colors.Gray.ToPlatform());
 #endif
         });
+        Microsoft.Maui.Handlers.PickerHandler.Mapper.ModifyMapping(nameof(IPicker.Background), (handler, picker, action) =>
+        {
+#if ANDROID
+            handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Colors.Gray.ToPlatform());
+#endif
+        });
+
 
         return builder.Build();
 	}

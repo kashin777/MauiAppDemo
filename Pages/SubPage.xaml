@@ -1,12 +1,157 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:localModel="clr-namespace:MauiAppDemo.Models"
              x:Class="MauiAppDemo.Pages.SubPage">
-			 
+
     <ScrollView>
         <VerticalStackLayout 
             VerticalOptions="Center">
-            
+
+            <HorizontalStackLayout VerticalOptions="Center">
+                <Label Text="ActivityIndicator" />
+                <CheckBox IsChecked="True" x:Name="ActivityIndicatorCheckBox" />
+                <ActivityIndicator WidthRequest="50" HeightRequest="50" IsRunning="{Binding Source={x:Reference ActivityIndicatorCheckBox}, Path=IsChecked}" Color="Red"  />
+                <ActivityIndicator WidthRequest="50" HeightRequest="50" IsRunning="{Binding Source={x:Reference ActivityIndicatorCheckBox}, Path=IsChecked}" Color="Green" />
+                <ActivityIndicator WidthRequest="50" HeightRequest="50" IsRunning="{Binding Source={x:Reference ActivityIndicatorCheckBox}, Path=IsChecked}" Color="Blue" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout VerticalOptions="Center">
+                <Label Text="BlazorWebView" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <Label Text="Border" />
+                <Border WidthRequest="50" HeightRequest="50" Margin="5" Stroke="Black"
+                        StrokeThickness="1" StrokeShape="Rectangle" />
+                <Border WidthRequest="50" HeightRequest="50" Margin="5" Stroke="Red"
+                        StrokeThickness="2" StrokeShape="RoundRectangle 10,10,10,10"/>
+                <Border WidthRequest="50" HeightRequest="50" Margin="5" Stroke="Green"
+                        StrokeThickness="3" StrokeShape="Rectangle" StrokeDashArray="5.0" StrokeDashOffset="1.0">
+                </Border>
+                <Border WidthRequest="50" HeightRequest="50" Margin="5" Stroke="Blue"
+                        StrokeThickness="6" StrokeShape="Ellipse" BackgroundColor="SkyBlue" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <Label Text="BoxView" />
+                <BoxView WidthRequest="50" HeightRequest="50" Margin="5" Color="Pink" />
+                <BoxView WidthRequest="50" HeightRequest="50" Margin="5" Color="LightGreen" CornerRadius="10" />
+                <BoxView WidthRequest="50" HeightRequest="50" Margin="5" Color="LightBlue" CornerRadius="20,0,0,0" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <Label Text="Button" />
+                <Button WidthRequest="80" HeightRequest="50" Margin="5" Text="Click" TextColor="White" Background="Red" />
+                <Button WidthRequest="80" HeightRequest="50" Margin="5" Text="Click" TextColor="Black" Background="Green" />
+                <Button WidthRequest="120" HeightRequest="50" Margin="5" Text="Click" TextColor="Black" Background="LightBlue" ImageSource="logout.png" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <Label Text="CarouselView" />
+                <Label VerticalTextAlignment="Center" WidthRequest="120">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Current Item = " />
+                            <Span Text="{Binding Source={Reference CarouselView}, Path=CurrentItem.Name}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <CarouselView x:Name="CarouselView" WidthRequest="120" HeightRequest="100" Position="0" PeekAreaInsets="5">
+                    <CarouselView.ItemsSource>
+                        <x:Array Type="{x:Type localModel:User}">
+                            <localModel:User No="1234" localModel:Name="Kashin777" />
+                            <localModel:User No="1111" localModel:Name="User1111" />
+                            <localModel:User No="9999" localModel:Name="User9999" />
+                        </x:Array>
+                    </CarouselView.ItemsSource>
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Stroke="Black"
+                                    StrokeThickness="1"
+                                    StrokeShape="Rectangle"
+                                    Padding="5"
+                                    Margin="5" WidthRequest="100">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="CurrentItem">
+                                            <VisualState.Setters>
+                                                <Setter Property="Scale" Value="1.0" />
+                                                <Setter Property="Opacity" Value="1.0" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="PreviousItem">
+                                            <VisualState.Setters>
+                                                <Setter Property="Scale" Value="0.75" />
+                                                <Setter Property="Opacity" Value="0.75" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="NextItem">
+                                            <VisualState.Setters>
+                                                <Setter Property="Scale" Value="0.75" />
+                                                <Setter Property="Opacity" Value="0.75" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="DefaultItem">
+                                            <VisualState.Setters>
+                                                <Setter Property="Scale" Value="0.5" />
+                                                <Setter Property="Opacity" Value="0.5" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding No}" />
+                                    <Label Text="{Binding Name}" />
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <Label Text="CheckBox" />
+                <CheckBox Margin="5" Color="Red" />
+                <CheckBox Margin="5" Color="Green" />
+                <CheckBox x:Name="CheckBox3" Margin="5" Color="LightBlue" />
+                <CheckBox x:Name="CheckBox4" Margin="5" IsEnabled="{Binding Source={Reference CheckBox3}, Path=IsChecked}">
+                    <CheckBox.Triggers>
+                        <DataTrigger TargetType="{x:Type CheckBox}" Binding="{Binding Source={x:RelativeSource Mode=Self}, Path=IsChecked}" Value="False">
+                            <Setter Property="Color" Value="Red" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="{x:Type CheckBox}" Binding="{Binding Source={x:RelativeSource Mode=Self}, Path=IsChecked}" Value="True">
+                            <Setter Property="Color" Value="Green" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="{x:Type CheckBox}" Binding="{Binding Source={x:RelativeSource Mode=Self}, Path=IsEnabled}" Value="False">
+                            <Setter Property="Opacity" Value="0.3" />
+                        </DataTrigger>
+                    </CheckBox.Triggers>
+                </CheckBox>
+                <CheckBox Margin="5" IsEnabled="{Binding Source={Reference CheckBox4}, Path=IsChecked}">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Color" Value="Red" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="IsChecked">
+                                <VisualState.Setters>
+                                    <Setter Property="Color" Value="Green" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="Opacity" Value="0.3" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </CheckBox>
+            </HorizontalStackLayout>
+
         </VerticalStackLayout>
     </ScrollView>
  
