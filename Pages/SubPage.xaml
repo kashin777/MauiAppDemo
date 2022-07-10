@@ -116,7 +116,11 @@
                 <CheckBox Margin="5" Color="Red" />
                 <CheckBox Margin="5" Color="Green" />
                 <CheckBox x:Name="CheckBox3" Margin="5" Color="LightBlue" />
+<<<<<<< HEAD
                 <CheckBox x:Name="CheckBox4" Margin="5" IsEnabled="{Binding Source={Reference CheckBox3}, Path=IsChecked}">
+=======
+                <CheckBox x:Name="CheckBox4" Margin="5" IsChecked="{Binding CheckBoxIsChecked1}" IsEnabled="{Binding Source={Reference CheckBox3}, Path=IsChecked}">
+>>>>>>> 0ec0ae334bc47da12c7ee1f8667d9f45217fc81a
                     <CheckBox.Triggers>
                         <DataTrigger TargetType="{x:Type CheckBox}" Binding="{Binding Source={x:RelativeSource Mode=Self}, Path=IsChecked}" Value="False">
                             <Setter Property="Color" Value="Red" />
@@ -129,7 +133,11 @@
                         </DataTrigger>
                     </CheckBox.Triggers>
                 </CheckBox>
+<<<<<<< HEAD
                 <CheckBox Margin="5" IsEnabled="{Binding Source={Reference CheckBox4}, Path=IsChecked}">
+=======
+                <CheckBox Margin="5" IsChecked="{Binding CheckBoxIsChecked2}" IsEnabled="{Binding Source={Reference CheckBox4}, Path=IsChecked}">
+>>>>>>> 0ec0ae334bc47da12c7ee1f8667d9f45217fc81a
                     <VisualStateManager.VisualStateGroups>
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
