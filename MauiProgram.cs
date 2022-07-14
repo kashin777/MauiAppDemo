@@ -50,6 +50,12 @@ public static partial class MauiProgram
             handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Colors.Gray.ToPlatform());
 #endif
         });
+        Microsoft.Maui.Handlers.TimePickerHandler.Mapper.ModifyMapping(nameof(ITimePicker.Background), (handler, picker, action) =>
+        {
+#if ANDROID
+            handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Colors.Gray.ToPlatform());
+#endif
+        });
 
 
         return builder.Build();

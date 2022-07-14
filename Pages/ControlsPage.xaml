@@ -59,7 +59,7 @@
                     StrokeThickness="1"
                     StrokeShape="Rectangle"
                     Padding="5"
-                    WidthRequest="70" HeightRequest="70">
+                    WidthRequest="70" VerticalOptions="Fill">
                     <VerticalStackLayout>
                         <Label Text="{Binding No}" />
                         <Label Text="{Binding Name}" />
@@ -71,7 +71,8 @@
     </ContentPage.Resources>
     
     <ScrollView>
-        <Grid RowSpacing="5" ColumnSpacing="5" >
+        <Grid RowSpacing="5" ColumnSpacing="5" Margin="5">
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="1*" />
@@ -98,9 +99,29 @@
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
-                
+
                 <RowDefinition />
                 <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+
             </Grid.RowDefinitions>
 
             <Label Grid.Row="1" Grid.Column="0" Text="ActivityIndicator" />
@@ -145,7 +166,6 @@
 
             <Label Grid.Row="6" Grid.Column="0" Text="CarouselView" />
             <HorizontalStackLayout Grid.Row="6" Grid.Column="1" VerticalOptions="Center">
-
                 <Label VerticalTextAlignment="Center" WidthRequest="120">
                     <Label.FormattedText>
                         <FormattedString>
@@ -158,7 +178,6 @@
                               ItemsSource="{StaticResource UserArray}" ItemTemplate="{StaticResource UserViewTemplate}"
                               Position="0" PeekAreaInsets="60" BackgroundColor="#D9D9D9">
                 </CarouselView>
-
             </HorizontalStackLayout>
 
             <Label Grid.Row="7" Grid.Column="0" Text="CheckBox" />
@@ -205,7 +224,7 @@
 
             <Label Grid.Row="8" Grid.Column="0" Text="CollectionView" />
             <HorizontalStackLayout Grid.Row="8" Grid.Column="1" VerticalOptions="Center">
-                <CollectionView x:Name="CollectionView" WidthRequest="200" HeightRequest="100" 
+                <CollectionView x:Name="CollectionView" WidthRequest="200" HeightRequest="100"  
                                 ItemsSource="{StaticResource UserArray}" ItemTemplate="{StaticResource UserViewTemplate}">
                 </CollectionView>
             </HorizontalStackLayout>
@@ -216,11 +235,11 @@
             </HorizontalStackLayout>
 
             <Label Grid.Row="10" Grid.Column="0" Text="Editor" />
-            <HorizontalStackLayout Grid.Row="10" Grid.Column="1" VerticalOptions="Center">
+            <HorizontalStackLayout Grid.Row="10" Grid.Column="1" >
                 <Editor x:Name="Editor" WidthRequest="100" HeightRequest="100"
                         Placeholder="Please input multi line text."
-                        MaxLength="100" />
-                <Label>
+                        MaxLength="100" Text="" />
+                <Label VerticalOptions="Center">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="length = " />
@@ -251,8 +270,8 @@
             <HorizontalStackLayout Grid.Row="12" Grid.Column="1" VerticalOptions="Center">
                 <Entry x:Name="Entry" WidthRequest="100"
                         Placeholder="Please input single line text."
-                        MaxLength="100" />
-                <Label>
+                        MaxLength="100" Text="" />
+                <Label VerticalOptions="Center">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="length = " />
@@ -268,6 +287,23 @@
 
             <Label Grid.Row="14" Grid.Column="0" Text="Image" />
             <HorizontalStackLayout Grid.Row="14" Grid.Column="1" VerticalOptions="Center">
+                <Image Source="dotnet_bot.png" WidthRequest="50" HeightRequest="50" >
+                    <Image.Shadow>
+                        <Shadow Brush="Black"
+                                Offset="20,20"
+                                Radius="40"
+                                Opacity="0.8" />
+                    </Image.Shadow>
+                </Image>
+                <Image Source="dotnet_bot.png" WidthRequest="50" HeightRequest="50" Opacity="0.5" />
+                <Image Source="dotnet_bot.png" WidthRequest="50" HeightRequest="50" Opacity="0.2">
+                    <Image.Shadow>
+                        <Shadow Brush="Black"
+                                Offset="20,20"
+                                Radius="40"
+                                Opacity="0.8" />
+                    </Image.Shadow>
+                </Image>
             </HorizontalStackLayout>
 
             <Label Grid.Row="15" Grid.Column="0" Text="ImageButton" />
@@ -278,7 +314,7 @@
             <HorizontalStackLayout Grid.Row="16" Grid.Column="1" VerticalOptions="Center">
                 <VerticalStackLayout Spacing="10">
                     <CarouselView WidthRequest="200" HeightRequest="100" 
-                            ItemsSource="{StaticResource UserArray}" ItemTemplate="{StaticResource UserViewCellTemplate}"
+                            ItemsSource="{StaticResource UserArray}" ItemTemplate="{StaticResource UserViewTemplate}"
                             Position="0" PeekAreaInsets="60" BackgroundColor="#D9D9D9"
                             IndicatorView="IndicatorView">
                     </CarouselView>
@@ -316,6 +352,105 @@
 
             </HorizontalStackLayout>
 
+            <Label Grid.Row="20" Grid.Column="0" Text="Path" />
+            <HorizontalStackLayout Grid.Row="20" Grid.Column="1" VerticalOptions="Center">
+            </HorizontalStackLayout>
+
+
+            <Label Grid.Row="21" Grid.Column="0" Text="Picker" />
+            <HorizontalStackLayout Grid.Row="21" Grid.Column="1" VerticalOptions="Center">
+                <Picker x:Name="Picker" WidthRequest="200" 
+                            ItemsSource="{StaticResource UserArray}" ItemDisplayBinding="{Binding Name}">
+                </Picker>
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="22" Grid.Column="0" Text="Polygon" />
+            <HorizontalStackLayout Grid.Row="22" Grid.Column="1" VerticalOptions="Center">
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="23" Grid.Column="0" Text="Polyline" />
+            <HorizontalStackLayout Grid.Row="23" Grid.Column="1" VerticalOptions="Center">
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="24" Grid.Column="0" Text="ProgressBar" />
+            <HorizontalStackLayout Grid.Row="24" Grid.Column="1" VerticalOptions="Center" Spacing="5">
+                <Button Text="animation" Clicked="ProgressBar_Animation" />
+                <ProgressBar x:Name="ProgressBar1" WidthRequest="50" Progress="0.5" ProgressColor="Red" />
+                <ProgressBar x:Name="ProgressBar2" WidthRequest="50" Progress="0.5" ProgressColor="Green" />
+                <ProgressBar x:Name="ProgressBar3" WidthRequest="50" Progress="0.5" ProgressColor="Blue" />
+                <ProgressBar x:Name="ProgressBar4" WidthRequest="50" Progress="0.5" ProgressColor="Green" />
+                <ProgressBar x:Name="ProgressBar5" WidthRequest="50" Progress="0.5" ProgressColor="Red" />
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="25" Grid.Column="0" Text="RadioButton" />
+            <HorizontalStackLayout Grid.Row="25" Grid.Column="1" VerticalOptions="Center" RadioButtonGroup.GroupName="Group1" Spacing="5">
+                <RadioButton IsChecked="True"  Content="A" BorderColor="Red" TextColor="Red" BorderWidth="2" CornerRadius="5" BackgroundColor="Pink" />
+                <RadioButton IsChecked="False" Content="B" BorderColor="Green" TextColor="Green"  BorderWidth="2" CornerRadius="5" BackgroundColor="LightGreen" />
+                <RadioButton IsChecked="False" Content="C" BorderColor="Blue" TextColor="Blue"  BorderWidth="2" CornerRadius="5" BackgroundColor="LightBlue" />
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="26" Grid.Column="0" Text="Rectangle" />
+            <HorizontalStackLayout Grid.Row="26" Grid.Column="1" VerticalOptions="Center">
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="27" Grid.Column="0" Text="RefreshView" />
+            <HorizontalStackLayout Grid.Row="27" Grid.Column="1" VerticalOptions="Center">
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="28" Grid.Column="0" Text="RoundRectangle" />
+            <HorizontalStackLayout Grid.Row="29" Grid.Column="1" VerticalOptions="Center">
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="29" Grid.Column="0" Text="ScrollView" />
+            <HorizontalStackLayout Grid.Row="29" Grid.Column="1" VerticalOptions="Center">
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="30" Grid.Column="0" Text="SearchBar" />
+            <HorizontalStackLayout Grid.Row="30" Grid.Column="1" VerticalOptions="Center">
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="31" Grid.Column="0" Text="Slider" />
+            <HorizontalStackLayout Grid.Row="31" Grid.Column="1" VerticalOptions="Center" Spacing="5">
+                <Slider Value="0" Minimum="0" Maximum="100" WidthRequest="100" MinimumTrackColor="Pink" MaximumTrackColor="Gray" ThumbColor="Red" />
+                <Slider Value="50" Minimum="0" Maximum="100" WidthRequest="100" MinimumTrackColor="LightGreen" MaximumTrackColor="Gray" ThumbColor="Green" />
+                <Slider Value="100" Minimum="0" Maximum="100" WidthRequest="100" MinimumTrackColor="LightBlue" MaximumTrackColor="Gray" ThumbColor="Blue" />
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="32" Grid.Column="0" Text="Stepper" />
+            <HorizontalStackLayout Grid.Row="32" Grid.Column="1" VerticalOptions="Center">
+                <Label VerticalTextAlignment="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Current Value = " />
+                            <Span Text="{Binding Source={Reference Stepper}, Path=Value}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Stepper x:Name="Stepper" Value="5" Minimum="0" Maximum="10" Increment="1" />
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="33" Grid.Column="0" Text="SwipeView" />
+            <HorizontalStackLayout Grid.Row="33" Grid.Column="1" VerticalOptions="Center">
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="34" Grid.Column="0" Text="Switch" />
+            <HorizontalStackLayout Grid.Row="34" Grid.Column="1" VerticalOptions="Center">
+                <Switch IsToggled="False" OnColor="Pink" ThumbColor="Red" />
+                <Switch IsToggled="True" OnColor="LightGreen"  ThumbColor="Green" />
+                <Switch IsToggled="True" OnColor="LightBlue"  ThumbColor="Blue" IsEnabled="False" />
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="35" Grid.Column="0" Text="TimePicker" />
+            <HorizontalStackLayout Grid.Row="35" Grid.Column="1" VerticalOptions="Center">
+                <TimePicker Format="HH:mm:ss" Time="12:34:00" />
+            </HorizontalStackLayout>
+
+            <Label Grid.Row="36" Grid.Column="0" Text="WebView" />
+            <HorizontalStackLayout Grid.Row="36" Grid.Column="1" VerticalOptions="Center">
+                <ScrollView WidthRequest="300" HeightRequest="200">
+                    <WebView HorizontalOptions="Fill" VerticalOptions="Fill" Source="https://github.com/" />
+                </ScrollView>
+            </HorizontalStackLayout>
         </Grid>
     </ScrollView>
  

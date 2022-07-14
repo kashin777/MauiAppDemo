@@ -16,9 +16,11 @@
     </TabBar>
 
     <TabBar 
+        Shell.TabBarForegroundColor="White"
         Shell.TabBarBackgroundColor="{StaticResource Primary}"
         Shell.TabBarTitleColor="White"
         Shell.TabBarUnselectedColor="LightGray"
+        Shell.TabBarDisabledColor="Gray"
         >
         <Tab Title="{x:Static local:Messages.Page_Main}">
             <ShellContent
